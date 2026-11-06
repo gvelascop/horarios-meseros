@@ -1,3 +1,4 @@
+const path = require('path');
 const express = require('express');
 const cors = require('cors');
 const mysql = require('mysql2/promise');
@@ -15,6 +16,16 @@ app.use('/api/areas', areasRoutes);
 app.use('/api/trabajadores', trabajadoresRoutes);
 app.use('/api/horarios', horariosRoutes);
 app.use('/api/estadisticas', estadisticasRoutes);
+
+// Servir la aplicación React compilada
+app.use(express.static(path.join(__dirname, '../frontend/dist')));
+
+// Mostrar React para las rutas que no pertenecen a la API
+app.get(/^(?!\/api(?:\/|$)).*/, (req, res) => {
+    res.sendFile(
+        path.join(__dirname, '../frontend/dist/index.html')
+    );
+});
 
 // Conexión con MySQL
 const db = mysql.createPool({
@@ -45,6 +56,6 @@ app.get('/api/test-db', async (req, res) => {
 
 const PORT = process.env.PORT || 3000;
 
-app.listen(PORT, () => {
-    console.log(`Servidor funcionando en http://localhost:${PORT}`);
+app.listen(PORT, '0.0.0.0', () => {
+    console.log(`Servidor funcionando en puerto ${PORT}`);
 });
