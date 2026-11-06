@@ -1,0 +1,1128 @@
+.aplicacion {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  color: var(--color-ink);
+}
+
+.encabezado {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  overflow: hidden;
+  width: 100%;
+  padding: 28px max(32px, calc((100vw - 1500px) / 2));
+  color: #fff;
+  background:
+    radial-gradient(ellipse at 86% 0%, rgba(80, 161, 143, .38), transparent 34%),
+    linear-gradient(115deg, #123f40 0%, #17615c 60%, #23776a 100%);
+}
+
+.encabezado::after {
+  position: absolute;
+  z-index: -1;
+  right: 12%;
+  bottom: -96px;
+  width: 250px;
+  height: 190px;
+  border: 1px solid rgba(255, 255, 255, .12);
+  border-radius: 50%;
+  content: "";
+  transform: rotate(-24deg);
+}
+
+.encabezado h1 {
+  margin: 0 0 6px;
+  color: #fff;
+  font-size: clamp(20px, 2.4vw, 29px);
+  font-weight: 750;
+  letter-spacing: .045em;
+}
+
+.encabezado p {
+  margin: 0;
+  color: rgba(255, 255, 255, .76);
+  font-size: 14px;
+}
+
+.indicador {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 10px 15px;
+  border: 1px solid rgba(255, 255, 255, .22);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .1);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  backdrop-filter: blur(8px);
+}
+
+.indicador::before {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #a8dfb8;
+  box-shadow: 0 0 0 4px rgba(168, 223, 184, .14);
+  content: "";
+}
+
+.contenido {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  width: min(100%, 1600px);
+  min-height: 0;
+  margin: 0 auto;
+  padding: 30px 32px 38px;
+}
+
+.navegacion-vistas {
+  display: inline-flex;
+  align-self: flex-start;
+  gap: 4px;
+  margin-bottom: 14px;
+  padding: 5px;
+  border: 1px solid #e1e9e5;
+  border-radius: 12px;
+  background: #eaf0ed;
+}
+
+.navegacion-vistas button {
+  min-height: 38px;
+  padding: 0 16px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: #647573;
+  font-size: 13px;
+  font-weight: 650;
+  cursor: pointer;
+  transition: background .16s ease, color .16s ease, box-shadow .16s ease;
+}
+
+.navegacion-vistas button:hover:not(.vista-activa) {
+  background: rgba(255, 255, 255, .65);
+  color: var(--color-ink);
+}
+
+.navegacion-vistas button.vista-activa {
+  background: #fff;
+  color: var(--color-teal-dark);
+  box-shadow: 0 2px 6px rgba(31, 72, 63, .1);
+}
+
+.navegacion-vistas button:focus-visible {
+  outline: 3px solid rgba(23, 107, 103, .24);
+  outline-offset: 2px;
+}
+
+.panel {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 500px;
+  padding: 26px;
+  border: 1px solid rgba(218, 228, 223, .9);
+  border-radius: 20px;
+  background: var(--color-surface);
+  box-shadow: 0 18px 50px rgba(31, 72, 63, .075), 0 2px 6px rgba(31, 72, 63, .035);
+}
+
+.panel-estadisticas {
+  gap: 20px;
+}
+
+.encabezado-estadisticas {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.eyebrow-estadisticas {
+  color: var(--color-teal);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .12em;
+}
+
+.encabezado-estadisticas h2 {
+  margin: 7px 0 5px;
+  color: var(--color-ink);
+  font-size: 22px;
+  font-weight: 750;
+}
+
+.encabezado-estadisticas p {
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.boton-actualizar {
+  flex-shrink: 0;
+  min-height: 40px;
+  padding: 0 14px;
+  border: 1px solid #d5e4de;
+  border-radius: 9px;
+  background: #fff;
+  color: var(--color-teal-dark);
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background .16s ease, border-color .16s ease;
+}
+
+.boton-actualizar:hover:not(:disabled) {
+  border-color: #b6d6ce;
+  background: #edf7f3;
+}
+
+.boton-actualizar:focus-visible {
+  outline: 3px solid rgba(23, 107, 103, .24);
+  outline-offset: 2px;
+}
+
+.boton-actualizar:disabled {
+  cursor: wait;
+  opacity: .7;
+}
+
+.nota-estadisticas {
+  margin: 0;
+  padding: 11px 13px;
+  border: 1px solid #e3eee8;
+  border-radius: 9px;
+  background: #f5faf7;
+  color: #536966;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.resumen-estadisticas {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.tarjeta-resumen {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-height: 112px;
+  padding: 17px 19px;
+  border: 1px solid var(--color-line);
+  border-radius: 12px;
+  background:
+    radial-gradient(ellipse at 100% 0%, rgba(196, 230, 215, .34), transparent 58%),
+    #fff;
+}
+
+.tarjeta-resumen > span {
+  color: #667977;
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.tarjeta-resumen strong {
+  color: var(--color-teal-dark);
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.tarjeta-resumen small {
+  color: #82918e;
+  font-size: 11px;
+}
+
+.grafico-areas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
+  align-items: start;
+  gap: 16px;
+}
+
+.tarjeta-grafico-area {
+  min-width: 0;
+  padding: 18px;
+  border: 1px solid var(--color-line);
+  border-radius: 13px;
+  background: #fff;
+  box-shadow: 0 4px 14px rgba(31, 72, 63, .035);
+}
+
+.tarjeta-grafico-area > header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 19px;
+  padding-bottom: 13px;
+  border-bottom: 1px solid #edf1ef;
+}
+
+.etiqueta-area {
+  color: #7d8f8a;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .12em;
+}
+
+.tarjeta-grafico-area h3 {
+  overflow: hidden;
+  margin: 4px 0 0;
+  color: var(--color-ink);
+  font-size: 16px;
+  font-weight: 750;
+  text-overflow: ellipsis;
+}
+
+.total-area {
+  flex-shrink: 0;
+  padding: 6px 9px;
+  border-radius: 999px;
+  background: #edf7f2;
+  color: var(--color-teal-dark);
+  font-size: 11px;
+  font-weight: 750;
+}
+
+.lista-barras {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.lista-barras li {
+  min-width: 0;
+}
+
+.detalle-barra {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 6px;
+  color: #344a4b;
+  font-size: 12px;
+}
+
+.detalle-barra > span {
+  overflow: hidden;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.detalle-barra strong {
+  flex-shrink: 0;
+  color: #435d5b;
+  font-size: 11px;
+  font-weight: 750;
+}
+
+.pista-barra {
+  height: 8px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #edf2ef;
+}
+
+.pista-barra > span {
+  display: block;
+  height: 100%;
+  min-width: 0;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #287d70, #54a78b);
+  transition: width .3s ease;
+}
+
+.estado-estadisticas {
+  display: grid;
+  min-height: 180px;
+  padding: 24px;
+  border: 1px dashed #d5e2dc;
+  border-radius: 12px;
+  background: #fafcfb;
+  color: #667977;
+  font-size: 13px;
+  text-align: center;
+  place-items: center;
+}
+
+.mensaje-error-estadisticas {
+  margin: 0;
+}
+
+.titulo-horarios {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin-bottom: 22px;
+}
+
+.titulo-horarios h2 {
+  margin: 0 0 6px;
+  color: var(--color-ink);
+  font-size: 19px;
+  font-weight: 750;
+  letter-spacing: .015em;
+}
+
+.titulo-horarios p {
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 13px;
+}
+
+.selector-semana {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+
+.selector-semana label {
+  margin-right: 2px;
+  color: #526669;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.selector-semana input,
+.selector-semana button {
+  height: 40px;
+  border: 1px solid #dce6e2;
+  border-radius: 10px;
+  background: #fff;
+  color: var(--color-ink);
+}
+
+.selector-semana input {
+  padding: 0 11px;
+  font-size: 13px;
+}
+
+.selector-semana button {
+  display: grid;
+  width: 40px;
+  padding: 0;
+  place-items: center;
+  color: var(--color-teal);
+  font-size: 19px;
+  cursor: pointer;
+  transition: background .16s ease, border-color .16s ease, transform .16s ease;
+}
+
+.selector-semana button:hover {
+  border-color: #b6d6ce;
+  background: #edf7f3;
+  transform: translateY(-1px);
+}
+
+.selector-semana button.boton-excel {
+  display: inline-flex;
+  width: auto;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 14px;
+  border-color: var(--color-teal);
+  background: var(--color-teal);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.selector-semana button.boton-excel:hover:not(:disabled) {
+  border-color: var(--color-teal-dark);
+  background: var(--color-teal-dark);
+}
+
+.selector-semana button.boton-excel span {
+  font-size: 16px;
+}
+
+.selector-semana button.boton-excel:disabled {
+  cursor: not-allowed;
+  opacity: .55;
+  transform: none;
+}
+
+.selector-semana input:focus-visible,
+.selector-semana button:focus-visible,
+.mensaje button:focus-visible {
+  outline: 3px solid rgba(23, 107, 103, .24);
+  outline-offset: 2px;
+}
+
+.tabla-contenedor {
+  flex: 1;
+  min-height: 300px;
+  width: 100%;
+  overflow: auto;
+  border: 1px solid var(--color-line);
+  border-radius: 13px;
+  background: #fff;
+  scrollbar-color: #bfd1ca #f1f5f3;
+  scrollbar-width: thin;
+}
+
+.tabla-horarios {
+  width: 100%;
+  min-width: 1100px;
+  border-collapse: separate;
+  border-spacing: 0;
+  table-layout: fixed;
+  background: #fff;
+}
+
+.tabla-horarios thead th {
+  position: sticky;
+  z-index: 3;
+  top: 0;
+  padding: 13px 8px 11px;
+  border-right: 1px solid rgba(255, 255, 255, .11);
+  border-bottom: 1px solid #17615c;
+  background: #17615c;
+  color: #f6fffb;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 750;
+  letter-spacing: .075em;
+  text-transform: uppercase;
+}
+
+.tabla-horarios thead th:first-child {
+  border-top-left-radius: 12px;
+  text-align: left;
+}
+
+.tabla-horarios thead th:last-child {
+  border-top-right-radius: 12px;
+}
+
+.tabla-horarios th:first-child,
+.tabla-horarios th.columna-trabajador {
+  width: 18%;
+  min-width: 190px;
+  text-align: left;
+}
+
+.tabla-horarios th.columna-cargo {
+  width: 9%;
+  min-width: 100px;
+}
+
+.tabla-horarios th.columna-total {
+  width: 9%;
+  min-width: 90px;
+}
+
+.encabezado-dia,
+.encabezado-dia.festivo,
+.encabezado-festivo {
+  background: #17615c !important;
+  color: #f6fffb !important;
+}
+
+.fecha-dia {
+  display: block;
+  margin-top: 5px;
+  color: #b9ddd2;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: .02em;
+}
+
+.tabla-horarios td {
+  height: 43px;
+  padding: 0;
+  border-right: 1px solid #e8eeeb;
+  border-bottom: 1px solid #e8eeeb;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.tabla-horarios tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.fila-trabajador td {
+  background: #fff;
+  transition: background .15s ease;
+}
+
+.fila-trabajador:nth-of-type(even) td {
+  background: #f8faf9;
+}
+
+.fila-trabajador:hover td {
+  background: #f0f8f5;
+}
+
+.fila-area td {
+  height: 38px;
+  padding: 3px 12px;
+  border-right: 0;
+  border-bottom-color: #d7e9e2;
+  background: #eaf5ef !important;
+  color: var(--color-teal-dark);
+  text-align: left;
+}
+
+.area-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.fila-area .nombre-editable {
+  max-width: 450px;
+  color: var(--color-teal-dark);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.fila-area .nombre-editable:hover {
+  background: #dcefe5;
+}
+
+.fila-area .nombre-editable:focus {
+  background: #fff;
+  color: var(--color-ink);
+}
+
+.nombre-trabajador {
+  text-align: left !important;
+}
+
+.trabajador-info {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.nombre-editable {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  padding: 10px 12px;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--color-ink);
+  font-size: 12px;
+  text-align: left;
+}
+
+.nombre-editable:hover {
+  background: #edf5f1;
+}
+
+.nombre-editable:focus,
+.input-cargo:focus,
+.cargo-editable:focus {
+  outline: 2px solid rgba(23, 107, 103, .62);
+  outline-offset: -2px;
+  background: #fff;
+}
+
+.celda-cargo {
+  background: #f3f7f5 !important;
+}
+
+.input-cargo,
+.cargo-editable {
+  width: 100%;
+  height: 42px;
+  padding: 5px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: #637577;
+  font-size: 10px;
+  font-weight: 750;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.celda {
+  padding: 0 !important;
+}
+
+.celda-horario {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  height: 42px;
+  padding: 5px 3px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: #263d3f;
+  font-size: 11px;
+  text-align: center;
+  transition: box-shadow .15s ease, background .15s ease;
+}
+
+.celda-horario:hover:not(:disabled) {
+  box-shadow: inset 0 0 0 1px #b6d6ce;
+  background: #eff8f4;
+}
+
+.celda-horario:focus-visible {
+  position: relative;
+  z-index: 1;
+  outline: 2px solid var(--color-teal);
+  outline-offset: -2px;
+}
+
+.celda-horario:disabled {
+  color: #46595a;
+}
+
+.celda-horario.celda-descanso,
+.celda-descanso {
+  background: #fff1c9 !important;
+  color: #634000 !important;
+  font-weight: 750;
+  text-decoration: underline;
+  text-decoration-color: rgba(128, 84, 12, .45);
+  text-underline-offset: 3px;
+}
+
+.celda-horario.celda-compensatorio,
+.celda-compensatorio {
+  background: #e7f2ff !important;
+  color: #23486f !important;
+  font-weight: 750;
+}
+
+.celda-horario.celda-incapacidad,
+.celda-incapacidad {
+  background: #fce4dd !important;
+  color: #793827 !important;
+  font-weight: 750;
+}
+
+.celda-horario.celda-licencia,
+.celda-licencia {
+  background: #f8dfeb !important;
+  color: #71314f !important;
+  font-weight: 750;
+}
+
+.celda-horario.celda-libre,
+.celda-libre {
+  background: #f1f4f3 !important;
+  color: #596966 !important;
+  font-size: 10px;
+}
+
+.celda-horario.celda-especial,
+.celda-especial {
+  background: #e7e1fb !important;
+  color: #463371 !important;
+  font-weight: 750;
+}
+
+.total-horas {
+  border-left: 1px solid #d7e9e2 !important;
+  background: #edf7f2 !important;
+  color: var(--color-teal-dark);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.fila-agregar td {
+  height: 42px;
+  padding: 0 10px;
+  background: #fafcfb;
+  text-align: left;
+}
+
+.form-agregar {
+  width: 100%;
+}
+
+.form-agregar input {
+  display: block;
+  width: 100%;
+  max-width: 500px;
+  height: 38px;
+  padding: 5px 8px;
+  border: 0;
+  border-radius: 7px;
+  outline: none;
+  background: transparent;
+  color: var(--color-ink);
+  font-size: 12px;
+}
+
+.form-agregar input::placeholder,
+.form-nueva-area input::placeholder {
+  color: #98a7a3;
+}
+
+.form-agregar input:focus {
+  background: #fff;
+  box-shadow: inset 0 -2px 0 var(--color-teal);
+}
+
+.agregar-area {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  margin-top: 14px;
+  padding: 15px 18px;
+  border: 1px dashed #cbd9d3;
+  border-radius: 12px;
+  background: #f7faf8;
+}
+
+.icono-nueva-area {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 11px;
+  background: #dcefe5;
+  color: var(--color-teal);
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.agregar-area-copy {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 180px;
+}
+
+.agregar-area-copy strong {
+  color: var(--color-ink);
+  font-size: 13px;
+}
+
+.agregar-area-copy span {
+  color: var(--color-muted);
+  font-size: 11px;
+}
+
+.form-nueva-area {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  min-width: 0;
+}
+
+.form-nueva-area input {
+  flex: 1;
+  min-width: 0;
+  max-width: 360px;
+  height: 40px;
+  padding: 8px 12px;
+  border: 1px solid #d6e2dc;
+  border-radius: 9px;
+  background: #fff;
+  color: var(--color-ink);
+  font-size: 12px;
+}
+
+.form-nueva-area button {
+  flex-shrink: 0;
+  height: 40px;
+  padding: 0 14px;
+  border: 0;
+  border-radius: 9px;
+  background: var(--color-teal);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background .16s ease, transform .16s ease;
+}
+
+.form-nueva-area button:hover {
+  background: var(--color-teal-dark);
+  transform: translateY(-1px);
+}
+
+.form-nueva-area button:focus-visible {
+  outline: 3px solid rgba(23, 107, 103, .24);
+  outline-offset: 2px;
+}
+
+.form-nueva-area input:focus {
+  outline: 2px solid rgba(23, 107, 103, .22);
+  outline-offset: 0;
+}
+
+.ayuda {
+  margin: 17px 0 0;
+  color: var(--color-muted);
+  font-size: 12px;
+  line-height: 1.65;
+}
+
+.mensaje {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 14px;
+  padding: 12px 14px;
+  border: 1px solid #f1c1ad;
+  border-radius: 10px;
+  background: #fff4ef;
+  color: #814332;
+  font-size: 13px;
+}
+
+.mensaje button {
+  padding: 6px 10px;
+  border: 1px solid #e6b29d;
+  border-radius: 7px;
+  background: #fff;
+  color: #814332;
+  font-size: 12px;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.mensaje button:hover {
+  background: #ffebe2;
+}
+
+.tabla-contenedor::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.tabla-contenedor::-webkit-scrollbar-track {
+  border-radius: 8px;
+  background: #f1f5f3;
+}
+
+.tabla-contenedor::-webkit-scrollbar-thumb {
+  border: 2px solid #f1f5f3;
+  border-radius: 8px;
+  background: #bfd1ca;
+}
+
+@media (max-width: 900px) {
+  .encabezado {
+    padding: 22px 24px;
+  }
+
+  .contenido {
+    padding: 22px 20px 28px;
+  }
+
+  .panel {
+    min-height: 460px;
+    padding: 20px;
+    border-radius: 16px;
+  }
+
+  .grafico-areas {
+    grid-template-columns: 1fr;
+  }
+
+  .titulo-horarios {
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 600px) {
+  .encabezado {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 14px;
+    padding: 22px 18px;
+  }
+
+  .encabezado p {
+    font-size: 13px;
+  }
+
+  .indicador {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+
+  .contenido {
+    padding: 14px 10px 20px;
+  }
+
+  .panel {
+    min-height: 420px;
+    padding: 16px 12px;
+    border-radius: 14px;
+  }
+
+  .panel-estadisticas {
+    gap: 15px;
+  }
+
+  .navegacion-vistas button {
+    padding: 0 13px;
+  }
+
+  .encabezado-estadisticas h2 {
+    font-size: 19px;
+  }
+
+  .encabezado-estadisticas {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .resumen-estadisticas {
+    gap: 9px;
+  }
+
+  .tarjeta-resumen {
+    min-height: 102px;
+    padding: 13px;
+  }
+
+  .tarjeta-resumen strong {
+    font-size: 24px;
+  }
+
+  .titulo-horarios {
+    gap: 14px;
+    margin-bottom: 16px;
+  }
+
+  .titulo-horarios h2 {
+    font-size: 16px;
+  }
+
+  .titulo-horarios p {
+    font-size: 12px;
+  }
+
+  .selector-semana {
+    gap: 7px;
+    width: 100%;
+  }
+
+  .selector-semana label {
+    width: 100%;
+  }
+
+  .selector-semana input {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .agregar-area {
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 13px;
+  }
+
+  .agregar-area-copy {
+    min-width: 0;
+  }
+
+  .form-nueva-area {
+    flex-basis: 100%;
+  }
+
+  .form-nueva-area input {
+    max-width: none;
+  }
+
+  .tabla-horarios {
+    min-width: 1050px;
+  }
+
+  .ayuda {
+    font-size: 11px;
+  }
+}
+
+@media print {
+  @page {
+    size: landscape;
+    margin: 8mm;
+  }
+
+  body {
+    background: #fff;
+  }
+
+  .encabezado,
+  .navegacion-vistas,
+  .panel.panel-estadisticas,
+  .selector-semana,
+  .fila-agregar,
+  .agregar-area,
+  .ayuda,
+  .mensaje {
+    display: none !important;
+  }
+
+  .contenido,
+  .panel {
+    display: block;
+    width: 100%;
+    min-height: 0;
+    padding: 0;
+    border: 0;
+    box-shadow: none;
+  }
+
+  .tabla-contenedor {
+    display: block;
+    overflow: visible;
+    border: 0;
+  }
+
+  .tabla-horarios {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .tabla-horarios thead th {
+    position: static;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .celda-horario,
+  .nombre-editable,
+  .input-cargo,
+  .cargo-editable {
+    font-size: 9px;
+  }
+}
