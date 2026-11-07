@@ -58,6 +58,7 @@ router.get('/', async (req, res) => {
             SELECT
                 h.id,
                 h.trabajador_id,
+                COALESCE(h.area_id, t.area_id) AS area_id,
                 t.nombre AS trabajador,
                 a.nombre AS area,
                 DATE_FORMAT(
@@ -70,7 +71,7 @@ router.get('/', async (req, res) => {
             INNER JOIN trabajadores t
                 ON h.trabajador_id = t.id
             INNER JOIN areas a
-                ON t.area_id = a.id
+                ON COALESCE(h.area_id, t.area_id) = a.id
             WHERE h.semana_inicio = ?
               AND t.estado = 1
               AND a.estado = 1
@@ -147,6 +148,13 @@ router.post('/', async (req, res) => {
             });
         }
 
+        // Usar el area original al completar una semana ya registrada.
+        const [registrosSemana] = await db.query(
+            'SELECT area_id FROM horarios WHERE trabajador_id = ? AND semana_inicio = ? AND area_id IS NOT NULL ORDER BY id ASC LIMIT 1',
+            [trabajador_id, semana_inicio]
+        );
+        const areaSemana = registrosSemana[0]?.area_id ?? trabajadores[0].area_id;
+
         // Guardar o actualizar sin crear duplicados.
         await db.query(`
             INSERT INTO horarios (
@@ -158,17 +166,23 @@ router.post('/', async (req, res) => {
             )
             VALUES (?, ?, ?, ?, ?)
             ON DUPLICATE KEY UPDATE
-                area_id = VALUES(area_id),
+                area_id = COALESCE(area_id, VALUES(area_id)),
                 horario = VALUES(horario)
         `, [
             trabajador_id,
-            trabajadores[0].area_id,
+            areaSemana,
             semana_inicio,
             dia_semana,
             horarioFinal
         ]);
 
+        const [guardados] = await db.query(
+            'SELECT id, area_id FROM horarios WHERE trabajador_id = ? AND semana_inicio = ? AND dia_semana = ?',
+            [trabajador_id, semana_inicio, dia_semana]
+        );
         res.json({
+            id: guardados[0].id,
+            area_id: guardados[0].area_id,
             mensaje: 'Horario guardado correctamente',
             trabajador_id: Number(trabajador_id),
             semana_inicio,

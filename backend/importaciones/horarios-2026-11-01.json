@@ -1,0 +1,506 @@
+{
+  "inicio": "2026-11-01",
+  "fin": "2026-11-07",
+  "semana_inicio": "2026-11-02",
+  "dias": [
+    "Domingo",
+    "Lunes",
+    "Martes",
+    "Miercoles",
+    "Jueves",
+    "Viernes",
+    "Sabado"
+  ],
+  "trabajadores": [
+    {
+      "id": 38,
+      "area_id": 1,
+      "nombre": "Leidy Pinzon",
+      "horarios": [
+        "DESCANSO",
+        "1130am-6pm CAFE LETRAS",
+        "7am-330pm CLINICA",
+        "930pm-5am MONTAJE",
+        "5pm-1030pm ALISTAMIENTO",
+        "12pm-830pm COLSUBSIDIO",
+        "10am-630pm PLASTICOS"
+      ]
+    },
+    {
+      "id": 17,
+      "area_id": 1,
+      "nombre": "German Velasco",
+      "horarios": [
+        "8am-230pm AUTO",
+        "1130am-6pm ALISTAMIENTO",
+        "COMPENSATORIO",
+        "11am-630pm UNIMINUTO",
+        "6am-230pm GRUPO E. LINEA",
+        "9am-530pm COLSUBSIDIO",
+        "10am-530pm PLASTICOS"
+      ]
+    },
+    {
+      "id": 4,
+      "area_id": 1,
+      "nombre": "Adriana Salcedo",
+      "horarios": [
+        "1130am-6pm AUTO",
+        "6am-1230pm LINEA AUTO",
+        "8am-330pm AUTO",
+        "COMPENSATORIO",
+        "12pm-830pm COLANTA",
+        "8am-430pm COLSUBSIDIO",
+        "1230pm-8pm TCC"
+      ]
+    },
+    {
+      "id": 6,
+      "area_id": 1,
+      "nombre": "Maria Teresa Sierra",
+      "horarios": [
+        "DESCANSO",
+        "1130am-6pm CAFE LETRAS",
+        "6am-130pm CLINICA",
+        "1pm-830pm ALISTAMIENTO",
+        "730am-3pm TALLER DEL CHEF",
+        "11am-730pm ADECCO",
+        "1230pm-8pm TCC"
+      ]
+    },
+    {
+      "id": 7,
+      "area_id": 1,
+      "nombre": "Jessika Guerrero",
+      "horarios": [
+        "1130am-6pm CAFE LETRAS",
+        "DESCANSO",
+        "COMPENSATORIO",
+        "8am-430pm GYJ FERRETERIA",
+        "930am-5pm PRUEBA MENU",
+        "8am-330pm RAMA",
+        "8am-330pm"
+      ]
+    },
+    {
+      "id": 8,
+      "area_id": 1,
+      "nombre": "Maira Rodriguez",
+      "horarios": [
+        "930am-4pm AUTO",
+        "DESCANSO",
+        "COMPENSATORIO",
+        "6am-130pm UNIMINUTO",
+        "1130am-7pm AC NIELSEN",
+        "8am-430pm COLSUBSIDIO",
+        "7am-230pm"
+      ]
+    },
+    {
+      "id": 9,
+      "area_id": 1,
+      "nombre": "Cesar Guayara",
+      "horarios": [
+        "1130am-6pm AUTO",
+        "DESCANSO",
+        "1030am-530pm PRUEBAS DE MENU",
+        "6am-130pm UNIMINUTO",
+        "COMPENSATORIO",
+        "1130am-8pm COLSUBSIDIO",
+        "1230pm-8pm"
+      ]
+    },
+    {
+      "id": 10,
+      "area_id": 1,
+      "nombre": "Nelson Reyes",
+      "horarios": [
+        "12pm-630pm CAFE LETRAS",
+        "DESCANSO",
+        "130pm-10pm BOLERA",
+        "COMPENSATORIO",
+        "6am-230pm GRUPO E. LINEA",
+        "7am-230pm BAR CAFE",
+        "1pm-730pm"
+      ]
+    },
+    {
+      "id": 11,
+      "area_id": 1,
+      "nombre": "Rafael Ruiz",
+      "horarios": [
+        "DESCANSO",
+        "930am-4pm AUTO",
+        "7am-230pm CLINICA",
+        "8am-330pm",
+        "8am-330pm",
+        "8am-330pm",
+        "8am-430pm"
+      ]
+    },
+    {
+      "id": 12,
+      "area_id": 1,
+      "nombre": "Andres Corredor",
+      "horarios": [
+        "930am-4pm",
+        "DESCANSO",
+        "7am-230pm CLINICA",
+        "930am-5pm PRUEBA MENU",
+        "COMPENSATORIO",
+        "930am-6pm",
+        "LICENCIA"
+      ]
+    },
+    {
+      "id": 13,
+      "area_id": 1,
+      "nombre": "Camila Aponte",
+      "horarios": [
+        "DESCANSO",
+        "DESCANSO",
+        "8am-330pm",
+        "8am-330pm",
+        "8am-330pm",
+        "8am-330pm",
+        "8am-330pm"
+      ]
+    },
+    {
+      "id": 5,
+      "area_id": 2,
+      "nombre": "Paola Hernandez",
+      "horarios": [
+        "8am-230pm CAFE LETRAS",
+        "12pm-630pm BAR CAFE",
+        "1130am-7pm",
+        "COMPENSATORIO",
+        "7am-330pm",
+        "1030am-7pm",
+        "7am-230pm AUTO"
+      ]
+    },
+    {
+      "id": 14,
+      "area_id": 2,
+      "nombre": "Alexander Ramos",
+      "horarios": [
+        "12pm-630pm BAR CAFE",
+        "DESCANSO",
+        "COMPENSATORIO",
+        "1130am-7pm",
+        "7am-230pm",
+        "8am-430pm",
+        "10am-530pm AUTO"
+      ]
+    },
+    {
+      "id": 15,
+      "area_id": 2,
+      "nombre": "Jaime Vargas",
+      "horarios": [
+        "930am-4pm AUTO",
+        "8am-230pm AUTO",
+        "8am-330pm CLINICA",
+        "COMPENSATORIO",
+        "8am-430pm",
+        "7am-330pm",
+        "8am-330pm AUTO"
+      ]
+    },
+    {
+      "id": 16,
+      "area_id": 2,
+      "nombre": "Juan Reyes",
+      "horarios": [
+        "DESCANSO",
+        "1130am-6pm AUTO",
+        "7am-230pm CLINICA",
+        "1pm-830pm TALLER DEL CHEF",
+        "1030am-7pm",
+        "7am-230pm",
+        "10am-530pm AUTO"
+      ]
+    },
+    {
+      "id": 39,
+      "area_id": 2,
+      "nombre": "Viviana Sanchez",
+      "horarios": [
+        "12pm-630pm BOLERA",
+        "12pm-630pm BOLERA",
+        "7am-230pm",
+        "COMPENSATORIO",
+        "8am-430pm",
+        "1pm-930pm TALLER",
+        "9am-430pm AUTO"
+      ]
+    },
+    {
+      "id": 18,
+      "area_id": 3,
+      "nombre": "Jinneth Ulloa",
+      "horarios": [
+        "DESCANSO",
+        "DESCANSO",
+        "6am-130pm",
+        "6am-130pm",
+        "6am-130pm",
+        "6am-130pm",
+        "630am-2pm TALLER DEL CHEF"
+      ]
+    },
+    {
+      "id": 19,
+      "area_id": 3,
+      "nombre": "Johana Monroy",
+      "horarios": [
+        "DESCANSO",
+        "DESCANSO",
+        "1pm-830pm",
+        "1pm-830pm",
+        "1pm-830pm",
+        "1pm-830pm",
+        "1230pm-8pm"
+      ]
+    },
+    {
+      "id": 20,
+      "area_id": 4,
+      "nombre": "Yurany Rivas",
+      "horarios": [
+        "DESCANSO",
+        "DESCANSO",
+        "630am-2pm",
+        "630am-2pm",
+        "630am-2pm",
+        "630am-2pm",
+        "630am-2pm"
+      ]
+    },
+    {
+      "id": 21,
+      "area_id": 4,
+      "nombre": "Giovanny Rodriguez",
+      "horarios": [
+        "DESCANSO",
+        "8am-230pm BAR CAFE",
+        "130pm-9pm",
+        "1230pm-9pm",
+        "130pm-9pm",
+        "130pm-9pm",
+        "1230pm-8pm"
+      ]
+    },
+    {
+      "id": 22,
+      "area_id": 5,
+      "nombre": "Julian Medina",
+      "horarios": [
+        "12pm-630pm",
+        "DESCANSO",
+        "COMPENSATORIO",
+        "230pm-10pm",
+        "230pm-10pm",
+        "230pm-10pm",
+        "1pm-830pm"
+      ]
+    },
+    {
+      "id": 23,
+      "area_id": 5,
+      "nombre": "Mayra Alexandra Pinzon",
+      "horarios": [
+        "DESCANSO",
+        "12pm-630pm",
+        "230pm-10pm",
+        "230pm-10pm",
+        "230pm-10pm",
+        "230pm-10pm",
+        "12pm-830pm"
+      ]
+    },
+    {
+      "id": 24,
+      "area_id": 6,
+      "nombre": "Alexandra Prieto",
+      "horarios": [
+        "6am-1230pm LINEA",
+        "DESCANSO",
+        "COMPENSATORIO",
+        "10am-530pm",
+        "10am-530pm",
+        "1230pm-8pm COLSUBSIDIO",
+        "9am-530pm"
+      ]
+    },
+    {
+      "id": 25,
+      "area_id": 6,
+      "nombre": "Alejandra Sanchez",
+      "horarios": [
+        "DESCANSO",
+        "DESCANSO",
+        "10am-530pm LINEA",
+        "10am-530pm",
+        "10am-530pm",
+        "1230pm-8pm COLSUBSIDIO",
+        "10am-530pm"
+      ]
+    },
+    {
+      "id": 26,
+      "area_id": 6,
+      "nombre": "William Huertas",
+      "horarios": [
+        "1130am-6pm LINEA",
+        "1130am-6pm LINEA",
+        "COMPENSATORIO",
+        "1130am-8pm",
+        "1130am-7pm",
+        "1130am-8pm",
+        "1130am-7pm"
+      ]
+    },
+    {
+      "id": 27,
+      "area_id": 7,
+      "nombre": "Sergio Ramirez",
+      "horarios": [
+        "DESCANSO",
+        "DESCANSO",
+        "1pm-830pm",
+        "1pm-830pm",
+        "1pm-830pm",
+        "1pm-830pm",
+        "1pm-830pm"
+      ]
+    },
+    {
+      "id": 28,
+      "area_id": 7,
+      "nombre": "Leidy Martinez",
+      "horarios": [
+        "8am-230pm",
+        "DESCANSO",
+        "7am-230pm",
+        "7am-230pm",
+        "1130am-7pm",
+        "COMPENSATORIO",
+        "7am-330pm"
+      ]
+    },
+    {
+      "id": 29,
+      "area_id": 7,
+      "nombre": "Angie Gamba",
+      "horarios": [
+        "DESCANSO",
+        "1130am-6pm LINEA",
+        "1130am-7pm",
+        "1130am-7pm",
+        "1130am-7pm",
+        "1130am-8pm",
+        "DIA DE LA FAMILIA"
+      ]
+    },
+    {
+      "id": 30,
+      "area_id": 7,
+      "nombre": "Viviana Moreno",
+      "horarios": [
+        "DESCANSO",
+        "8am-230pm",
+        "7am-230pm",
+        "1130am-7pm",
+        "1230pm-8pm",
+        "930am-6pm",
+        "7am-230pm"
+      ]
+    },
+    {
+      "id": 31,
+      "area_id": 7,
+      "nombre": "Edgar Valderrama",
+      "horarios": [
+        "1130am-6pm",
+        "12pm-630pm",
+        "1130am-8pm",
+        "COMPENSATORIO",
+        "7am-230pm",
+        "1130am-8pm",
+        "1130am-7pm"
+      ]
+    },
+    {
+      "id": 32,
+      "area_id": 7,
+      "nombre": "Arceliano Stiven Amaya",
+      "horarios": [
+        "DESCANSO",
+        "1130am-6pm",
+        "1130am-7pm",
+        "7am-230pm",
+        "1130am-7pm",
+        "1130am-7pm",
+        "1130am-8pm"
+      ]
+    },
+    {
+      "id": 33,
+      "area_id": 7,
+      "nombre": "Willian Paez",
+      "horarios": [
+        "INCAPACIDAD",
+        "INCAPACIDAD",
+        "1pm-830pm",
+        "1pm-830pm",
+        "1pm-830pm",
+        "1pm-830pm",
+        "1pm-830pm"
+      ]
+    },
+    {
+      "id": 34,
+      "area_id": 7,
+      "nombre": "Nidia Carolina Leal",
+      "horarios": [
+        "930am-4pm",
+        "DESCANSO",
+        "COMPENSATORIO",
+        "1130am-8pm",
+        "1130am-7pm",
+        "1130am-7pm",
+        "1130am-7pm LINEA"
+      ]
+    },
+    {
+      "id": 35,
+      "area_id": 7,
+      "nombre": "Jimmy Paez",
+      "horarios": [
+        "1130am-6pm",
+        "INCAPACIDAD",
+        "INCAPACIDAD",
+        "INCAPACIDAD",
+        "8am-330pm",
+        "COMPENSATORIO",
+        "1130am-8pm"
+      ]
+    },
+    {
+      "id": 36,
+      "area_id": 7,
+      "nombre": "Valentina Avila",
+      "horarios": [
+        "1130am-6pm LINEA",
+        "DESCANSO",
+        "COMPENSATORIO",
+        "1130am-7pm PRUEBA MENU",
+        "1130am-7pm",
+        "7am-230pm",
+        "1130am-8pm"
+      ]
+    }
+  ]
+}

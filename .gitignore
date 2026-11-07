@@ -1,0 +1,10 @@
+# Local configuration and dependencies
+**/node_modules/
+**/.env
+**/.env.*
+!**/.env.example
+**/dist/
+**/*.log
+# Local backups and system cache
+backend/importaciones/respaldos/
+Microsoft/
