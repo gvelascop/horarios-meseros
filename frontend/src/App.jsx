@@ -794,6 +794,7 @@ function App() {
     totalesPorArea.set(areaId, (totalesPorArea.get(areaId) || 0) + dias);
     totalDiasTrabajados += dias;
   }
+  const formatoSemanas = dias => { const semanas = Math.floor(dias / 7); const restantes = dias % 7; return `${semanas} sem.${restantes ? ` + ${restantes} d` : ''}`; };
   const meserosEstadisticas = [...meserosPorId.values()]
     .sort((a, b) => a.nombre.localeCompare(b.nombre, 'es'));
 
@@ -1086,9 +1087,9 @@ function App() {
             <div className="encabezado-estadisticas">
               <div>
                 <span className="eyebrow-estadisticas">RESUMEN DEL EQUIPO</span>
-                <h2>Días trabajados por área</h2>
+                <h2>Semanas trabajadas por área</h2>
                 <p>
-                  Acumulado de todas las semanas: consulta los días que cada mesero ha trabajado
+                  Acumulado de todas las semanas: consulta las semanas equivalentes que cada mesero ha trabajado
                   en cada área.
                 </p>
               </div>
@@ -1103,7 +1104,7 @@ function App() {
             </div>
 
             <p className="nota-estadisticas">
-              El conteo no se reinicia al cambiar de semana. Se muestran todos los meseros en cada
+              Cada 7 días efectivamente trabajados equivalen a 1 semana, incluso si están repartidos entre distintas semanas del calendario. El acumulado no se reinicia. Se muestran todos los meseros en cada
               área y cada día trabajado se suma al área que tenía asignada al guardar ese turno.
               No se cuentan días libres, descansos, incapacidades, licencias ni compensatorios.
               Los horarios anteriores al registro histórico se asignaron al área actual y no se
@@ -1124,8 +1125,8 @@ function App() {
               <>
                 <div className="resumen-estadisticas">
                   <article className="tarjeta-resumen">
-                    <span>Días con turno</span>
-                    <strong>{totalDiasTrabajados.toLocaleString('es-CO')}</strong>
+                    <span>Semanas equivalentes</span>
+                    <strong>{formatoSemanas(totalDiasTrabajados)}</strong>
                     <small>En todas las áreas</small>
                   </article>
                   <article className="tarjeta-resumen">
@@ -1142,12 +1143,12 @@ function App() {
 
                 <div className="tabla-contenedor estadisticas-matriz">
                   <table className="tabla-estadisticas">
-                    <caption>Distribución de turnos por área</caption>
+                    <caption>Semanas equivalentes por área (7 días trabajados = 1 semana)</caption>
                     <thead>
                       <tr>
                         <th scope="col">Mesero</th>
                         {areasEstadisticas.map(area => <th scope="col" key={area.id}>{area.nombre}</th>)}
-                        <th scope="col">Total días</th>
+                        <th scope="col">Total semanas</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -1163,7 +1164,7 @@ function App() {
                             <td key={area.id}>
                               <div className="dato-area">
                                 <span className={(mesero.diasPorArea.get(area.id) || 0) ? 'dias-con-turno' : 'dias-sin-turno'}>
-                                  {(mesero.diasPorArea.get(area.id) || 0).toLocaleString('es-CO')}
+                                  {formatoSemanas(mesero.diasPorArea.get(area.id) || 0)}
                                 </span>
                                 <span className="barra-distribucion" aria-hidden="true">
                                   <span style={{ width: ((mesero.diasPorArea.get(area.id) || 0) / Math.max(1, mesero.total) * 100) + '%' }} />
@@ -1171,7 +1172,7 @@ function App() {
                               </div>
                             </td>
                           ))}
-                          <td className="total-estadisticas"><span className="insignia-total">{mesero.total.toLocaleString('es-CO')}<small> días</small></span></td>
+                          <td className="total-estadisticas"><span className="insignia-total">{formatoSemanas(mesero.total)}</span></td>
                         </tr>
                       ))}
                     </tbody>
@@ -1179,9 +1180,9 @@ function App() {
                       <tr>
                         <th scope="row">Total por área</th>
                         {areasEstadisticas.map(area => (
-                          <td key={area.id}>{(totalesPorArea.get(area.id) || 0).toLocaleString('es-CO')}</td>
+                          <td key={area.id}>{formatoSemanas(totalesPorArea.get(area.id) || 0)}</td>
                         ))}
-                        <td>{totalDiasTrabajados.toLocaleString('es-CO')}</td>
+                        <td>{formatoSemanas(totalDiasTrabajados)}</td>
                       </tr>
                     </tfoot>
                   </table>
