@@ -1,0 +1,1231 @@
+{
+  "inicio": "2026-11-08",
+  "fin": "2026-11-14",
+  "semana_inicio": "2026-11-09",
+  "plan": [
+    {
+      "trabajador_id": 4,
+      "nombre": "Adriana Salcedo",
+      "area_id": 3,
+      "area": "Concepta",
+      "horarios": [
+        {
+          "dia_semana": "Domingo",
+          "horario": "6:00 AM - 2:00 PM"
+        },
+        {
+          "dia_semana": "Lunes",
+          "horario": "7:00 AM - 3:00 PM"
+        },
+        {
+          "dia_semana": "Martes",
+          "horario": "8:00 AM - 4:00 PM"
+        },
+        {
+          "dia_semana": "Miercoles",
+          "horario": "10:00 AM - 6:00 PM"
+        },
+        {
+          "dia_semana": "Jueves",
+          "horario": "12:00 PM - 8:00 PM"
+        },
+        {
+          "dia_semana": "Viernes",
+          "horario": "1:00 PM - 9:00 PM"
+        },
+        {
+          "dia_semana": "Sabado",
+          "horario": "6:00 AM - 2:00 PM"
+        }
+      ]
+    },
+    {
+      "trabajador_id": 5,
+      "nombre": "Paola Hernandez",
+      "area_id": 1,
+      "area": "EVENTOS",
+      "horarios": [
+        {
+          "dia_semana": "Domingo",
+          "horario": "7:00 AM - 3:00 PM"
+        },
+        {
+          "dia_semana": "Lunes",
+          "horario": "8:00 AM - 4:00 PM"
+        },
+        {
+          "dia_semana": "Martes",
+          "horario": "10:00 AM - 6:00 PM"
+        },
+        {
+          "dia_semana": "Miercoles",
+          "horario": "12:00 PM - 8:00 PM"
+        },
+        {
+          "dia_semana": "Jueves",
+          "horario": "1:00 PM - 9:00 PM"
+        },
+        {
+          "dia_semana": "Viernes",
+          "horario": "6:00 AM - 2:00 PM"
+        },
+        {
+          "dia_semana": "Sabado",
+          "horario": "7:00 AM - 3:00 PM"
+        }
+      ]
+    },
+    {
+      "trabajador_id": 6,
+      "nombre": "Maria Teresa Sierra",
+      "area_id": 2,
+      "area": "BARRA DE BOCADOS",
+      "horarios": [
+        {
+          "dia_semana": "Domingo",
+          "horario": "8:00 AM - 4:00 PM"
+        },
+        {
+          "dia_semana": "Lunes",
+          "horario": "10:00 AM - 6:00 PM"
+        },
+        {
+          "dia_semana": "Martes",
+          "horario": "12:00 PM - 8:00 PM"
+        },
+        {
+          "dia_semana": "Miercoles",
+          "horario": "1:00 PM - 9:00 PM"
+        },
+        {
+          "dia_semana": "Jueves",
+          "horario": "6:00 AM - 2:00 PM"
+        },
+        {
+          "dia_semana": "Viernes",
+          "horario": "7:00 AM - 3:00 PM"
+        },
+        {
+          "dia_semana": "Sabado",
+          "horario": "8:00 AM - 4:00 PM"
+        }
+      ]
+    },
+    {
+      "trabajador_id": 7,
+      "nombre": "Jessika Guerrero",
+      "area_id": 4,
+      "area": "TACTICA-BOLERA",
+      "horarios": [
+        {
+          "dia_semana": "Domingo",
+          "horario": "10:00 AM - 6:00 PM"
+        },
+        {
+          "dia_semana": "Lunes",
+          "horario": "12:00 PM - 8:00 PM"
+        },
+        {
+          "dia_semana": "Martes",
+          "horario": "1:00 PM - 9:00 PM"
+        },
+        {
+          "dia_semana": "Miercoles",
+          "horario": "6:00 AM - 2:00 PM"
+        },
+        {
+          "dia_semana": "Jueves",
+          "horario": "7:00 AM - 3:00 PM"
+        },
+        {
+          "dia_semana": "Viernes",
+          "horario": "8:00 AM - 4:00 PM"
+        },
+        {
+          "dia_semana": "Sabado",
+          "horario": "10:00 AM - 6:00 PM"
+        }
+      ]
+    },
+    {
+      "trabajador_id": 8,
+      "nombre": "Maira Rodriguez",
+      "area_id": 5,
+      "area": "BOLERA",
+      "horarios": [
+        {
+          "dia_semana": "Domingo",
+          "horario": "12:00 PM - 8:00 PM"
+        },
+        {
+          "dia_semana": "Lunes",
+          "horario": "1:00 PM - 9:00 PM"
+        },
+        {
+          "dia_semana": "Martes",
+          "horario": "6:00 AM - 2:00 PM"
+        },
+        {
+          "dia_semana": "Miercoles",
+          "horario": "7:00 AM - 3:00 PM"
+        },
+        {
+          "dia_semana": "Jueves",
+          "horario": "8:00 AM - 4:00 PM"
+        },
+        {
+          "dia_semana": "Viernes",
+          "horario": "10:00 AM - 6:00 PM"
+        },
+        {
+          "dia_semana": "Sabado",
+          "horario": "12:00 PM - 8:00 PM"
+        }
+      ]
+    },
+    {
+      "trabajador_id": 9,
+      "nombre": "Cesar Guayara",
+      "area_id": 6,
+      "area": "AUTO",
+      "horarios": [
+        {
+          "dia_semana": "Domingo",
+          "horario": "1:00 PM - 9:00 PM"
+        },
+        {
+          "dia_semana": "Lunes",
+          "horario": "6:00 AM - 2:00 PM"
+        },
+        {
+          "dia_semana": "Martes",
+          "horario": "7:00 AM - 3:00 PM"
+        },
+        {
+          "dia_semana": "Miercoles",
+          "horario": "8:00 AM - 4:00 PM"
+        },
+        {
+          "dia_semana": "Jueves",
+          "horario": "10:00 AM - 6:00 PM"
+        },
+        {
+          "dia_semana": "Viernes",
+          "horario": "12:00 PM - 8:00 PM"
+        },
+        {
+          "dia_semana": "Sabado",
+          "horario": "1:00 PM - 9:00 PM"
+        }
+      ]
+    },
+    {
+      "trabajador_id": 10,
+      "nombre": "Nelson Reyes",
+      "area_id": 2,
+      "area": "BARRA DE BOCADOS",
+      "horarios": [
+        {
+          "dia_semana": "Domingo",
+          "horario": "6:00 AM - 2:00 PM"
+        },
+        {
+          "dia_semana": "Lunes",
+          "horario": "7:00 AM - 3:00 PM"
+        },
+        {
+          "dia_semana": "Martes",
+          "horario": "8:00 AM - 4:00 PM"
+        },
+        {
+          "dia_semana": "Miercoles",
+          "horario": "10:00 AM - 6:00 PM"
+        },
+        {
+          "dia_semana": "Jueves",
+          "horario": "12:00 PM - 8:00 PM"
+        },
+        {
+          "dia_semana": "Viernes",
+          "horario": "1:00 PM - 9:00 PM"
+        },
+        {
+          "dia_semana": "Sabado",
+          "horario": "6:00 AM - 2:00 PM"
+        }
+      ]
+    },
+    {
+      "trabajador_id": 11,
+      "nombre": "Rafael Ruiz",
+      "area_id": 3,
+      "area": "Concepta",
+      "horarios": [
+        {
+          "dia_semana": "Domingo",
+          "horario": "7:00 AM - 3:00 PM"
+        },
+        {
+          "dia_semana": "Lunes",
+          "horario": "8:00 AM - 4:00 PM"
+        },
+        {
+          "dia_semana": "Martes",
+          "horario": "10:00 AM - 6:00 PM"
+        },
+        {
+          "dia_semana": "Miercoles",
+          "horario": "12:00 PM - 8:00 PM"
+        },
+        {
+          "dia_semana": "Jueves",
+          "horario": "1:00 PM - 9:00 PM"
+        },
+        {
+          "dia_semana": "Viernes",
+          "horario": "6:00 AM - 2:00 PM"
+        },
+        {
+          "dia_semana": "Sabado",
+          "horario": "7:00 AM - 3:00 PM"
+        }
+      ]
+    },
+    {
+      "trabajador_id": 12,
+      "nombre": "Andres Corredor",
+      "area_id": 4,
+      "area": "TACTICA-BOLERA",
+      "horarios": [
+        {
+          "dia_semana": "Domingo",
+          "horario": "8:00 AM - 4:00 PM"
+        },
+        {
+          "dia_semana": "Lunes",
+          "horario": "10:00 AM - 6:00 PM"
+        },
+        {
+          "dia_semana": "Martes",
+          "horario": "12:00 PM - 8:00 PM"
+        },
+        {
+          "dia_semana": "Miercoles",
+          "horario": "1:00 PM - 9:00 PM"
+        },
+        {
+          "dia_semana": "Jueves",
+          "horario": "6:00 AM - 2:00 PM"
+        },
+        {
+          "dia_semana": "Viernes",
+          "horario": "7:00 AM - 3:00 PM"
+        },
+        {
+          "dia_semana": "Sabado",
+          "horario": "8:00 AM - 4:00 PM"
+        }
+      ]
+    },
+    {
+      "trabajador_id": 13,
+      "nombre": "Camila Aponte",
+      "area_id": 5,
+      "area": "BOLERA",
+      "horarios": [
+        {
+          "dia_semana": "Domingo",
+          "horario": "10:00 AM - 6:00 PM"
+        },
+        {
+          "dia_semana": "Lunes",
+          "horario": "12:00 PM - 8:00 PM"
+        },
+        {
+          "dia_semana": "Martes",
+          "horario": "1:00 PM - 9:00 PM"
+        },
+        {
+          "dia_semana": "Miercoles",
+          "horario": "6:00 AM - 2:00 PM"
+        },
+        {
+          "dia_semana": "Jueves",
+          "horario": "7:00 AM - 3:00 PM"
+        },
+        {
+          "dia_semana": "Viernes",
+          "horario": "8:00 AM - 4:00 PM"
+        },
+        {
+          "dia_semana": "Sabado",
+          "horario": "10:00 AM - 6:00 PM"
+        }
+      ]
+    },
+    {
+      "trabajador_id": 14,
+      "nombre": "Alexander Ramos",
+      "area_id": 1,
+      "area": "EVENTOS",
+      "horarios": [
+        {
+          "dia_semana": "Domingo",
+          "horario": "12:00 PM - 8:00 PM"
+        },
+        {
+          "dia_semana": "Lunes",
+          "horario": "1:00 PM - 9:00 PM"
+        },
+        {
+          "dia_semana": "Martes",
+          "horario": "6:00 AM - 2:00 PM"
+        },
+        {
+          "dia_semana": "Miercoles",
+          "horario": "7:00 AM - 3:00 PM"
+        },
+        {
+          "dia_semana": "Jueves",
+          "horario": "8:00 AM - 4:00 PM"
+        },
+        {
+          "dia_semana": "Viernes",
+          "horario": "10:00 AM - 6:00 PM"
+        },
+        {
+          "dia_semana": "Sabado",
+          "horario": "12:00 PM - 8:00 PM"
+        }
+      ]
+    },
+    {
+      "trabajador_id": 15,
+      "nombre": "Jaime Vargas",
+      "area_id": 6,
+      "area": "AUTO",
+      "horarios": [
+        {
+          "dia_semana": "Domingo",
+          "horario": "1:00 PM - 9:00 PM"
+        },
+        {
+          "dia_semana": "Lunes",
+          "horario": "6:00 AM - 2:00 PM"
+        },
+        {
+          "dia_semana": "Martes",
+          "horario": "7:00 AM - 3:00 PM"
+        },
+        {
+          "dia_semana": "Miercoles",
+          "horario": "8:00 AM - 4:00 PM"
+        },
+        {
+          "dia_semana": "Jueves",
+          "horario": "10:00 AM - 6:00 PM"
+        },
+        {
+          "dia_semana": "Viernes",
+          "horario": "12:00 PM - 8:00 PM"
+        },
+        {
+          "dia_semana": "Sabado",
+          "horario": "1:00 PM - 9:00 PM"
+        }
+      ]
+    },
+    {
+      "trabajador_id": 16,
+      "nombre": "Juan Reyes",
+      "area_id": 7,
+      "area": "RESTAURANTE CAFE DE LAS LETRAS",
+      "horarios": [
+        {
+          "dia_semana": "Domingo",
+          "horario": "6:00 AM - 2:00 PM"
+        },
+        {
+          "dia_semana": "Lunes",
+          "horario": "7:00 AM - 3:00 PM"
+        },
+        {
+          "dia_semana": "Martes",
+          "horario": "8:00 AM - 4:00 PM"
+        },
+        {
+          "dia_semana": "Miercoles",
+          "horario": "10:00 AM - 6:00 PM"
+        },
+        {
+          "dia_semana": "Jueves",
+          "horario": "12:00 PM - 8:00 PM"
+        },
+        {
+          "dia_semana": "Viernes",
+          "horario": "1:00 PM - 9:00 PM"
+        },
+        {
+          "dia_semana": "Sabado",
+          "horario": "6:00 AM - 2:00 PM"
+        }
+      ]
+    },
+    {
+      "trabajador_id": 17,
+      "nombre": "Valentina Avila",
+      "area_id": 3,
+      "area": "Concepta",
+      "horarios": [
+        {
+          "dia_semana": "Domingo",
+          "horario": "7:00 AM - 3:00 PM"
+        },
+        {
+          "dia_semana": "Lunes",
+          "horario": "8:00 AM - 4:00 PM"
+        },
+        {
+          "dia_semana": "Martes",
+          "horario": "10:00 AM - 6:00 PM"
+        },
+        {
+          "dia_semana": "Miercoles",
+          "horario": "12:00 PM - 8:00 PM"
+        },
+        {
+          "dia_semana": "Jueves",
+          "horario": "1:00 PM - 9:00 PM"
+        },
+        {
+          "dia_semana": "Viernes",
+          "horario": "6:00 AM - 2:00 PM"
+        },
+        {
+          "dia_semana": "Sabado",
+          "horario": "7:00 AM - 3:00 PM"
+        }
+      ]
+    },
+    {
+      "trabajador_id": 18,
+      "nombre": "Jinneth Ulloa",
+      "area_id": 1,
+      "area": "EVENTOS",
+      "horarios": [
+        {
+          "dia_semana": "Domingo",
+          "horario": "8:00 AM - 4:00 PM"
+        },
+        {
+          "dia_semana": "Lunes",
+          "horario": "10:00 AM - 6:00 PM"
+        },
+        {
+          "dia_semana": "Martes",
+          "horario": "12:00 PM - 8:00 PM"
+        },
+        {
+          "dia_semana": "Miercoles",
+          "horario": "1:00 PM - 9:00 PM"
+        },
+        {
+          "dia_semana": "Jueves",
+          "horario": "6:00 AM - 2:00 PM"
+        },
+        {
+          "dia_semana": "Viernes",
+          "horario": "7:00 AM - 3:00 PM"
+        },
+        {
+          "dia_semana": "Sabado",
+          "horario": "8:00 AM - 4:00 PM"
+        }
+      ]
+    },
+    {
+      "trabajador_id": 19,
+      "nombre": "Johana Monroy",
+      "area_id": 2,
+      "area": "BARRA DE BOCADOS",
+      "horarios": [
+        {
+          "dia_semana": "Domingo",
+          "horario": "10:00 AM - 6:00 PM"
+        },
+        {
+          "dia_semana": "Lunes",
+          "horario": "12:00 PM - 8:00 PM"
+        },
+        {
+          "dia_semana": "Martes",
+          "horario": "1:00 PM - 9:00 PM"
+        },
+        {
+          "dia_semana": "Miercoles",
+          "horario": "6:00 AM - 2:00 PM"
+        },
+        {
+          "dia_semana": "Jueves",
+          "horario": "7:00 AM - 3:00 PM"
+        },
+        {
+          "dia_semana": "Viernes",
+          "horario": "8:00 AM - 4:00 PM"
+        },
+        {
+          "dia_semana": "Sabado",
+          "horario": "10:00 AM - 6:00 PM"
+        }
+      ]
+    },
+    {
+      "trabajador_id": 20,
+      "nombre": "Yurany Rivas",
+      "area_id": 5,
+      "area": "BOLERA",
+      "horarios": [
+        {
+          "dia_semana": "Domingo",
+          "horario": "12:00 PM - 8:00 PM"
+        },
+        {
+          "dia_semana": "Lunes",
+          "horario": "1:00 PM - 9:00 PM"
+        },
+        {
+          "dia_semana": "Martes",
+          "horario": "6:00 AM - 2:00 PM"
+        },
+        {
+          "dia_semana": "Miercoles",
+          "horario": "7:00 AM - 3:00 PM"
+        },
+        {
+          "dia_semana": "Jueves",
+          "horario": "8:00 AM - 4:00 PM"
+        },
+        {
+          "dia_semana": "Viernes",
+          "horario": "10:00 AM - 6:00 PM"
+        },
+        {
+          "dia_semana": "Sabado",
+          "horario": "12:00 PM - 8:00 PM"
+        }
+      ]
+    },
+    {
+      "trabajador_id": 21,
+      "nombre": "Giovanny Rodriguez",
+      "area_id": 6,
+      "area": "AUTO",
+      "horarios": [
+        {
+          "dia_semana": "Domingo",
+          "horario": "1:00 PM - 9:00 PM"
+        },
+        {
+          "dia_semana": "Lunes",
+          "horario": "6:00 AM - 2:00 PM"
+        },
+        {
+          "dia_semana": "Martes",
+          "horario": "7:00 AM - 3:00 PM"
+        },
+        {
+          "dia_semana": "Miercoles",
+          "horario": "8:00 AM - 4:00 PM"
+        },
+        {
+          "dia_semana": "Jueves",
+          "horario": "10:00 AM - 6:00 PM"
+        },
+        {
+          "dia_semana": "Viernes",
+          "horario": "12:00 PM - 8:00 PM"
+        },
+        {
+          "dia_semana": "Sabado",
+          "horario": "1:00 PM - 9:00 PM"
+        }
+      ]
+    },
+    {
+      "trabajador_id": 22,
+      "nombre": "Julian Medina",
+      "area_id": 4,
+      "area": "TACTICA-BOLERA",
+      "horarios": [
+        {
+          "dia_semana": "Domingo",
+          "horario": "6:00 AM - 2:00 PM"
+        },
+        {
+          "dia_semana": "Lunes",
+          "horario": "7:00 AM - 3:00 PM"
+        },
+        {
+          "dia_semana": "Martes",
+          "horario": "8:00 AM - 4:00 PM"
+        },
+        {
+          "dia_semana": "Miercoles",
+          "horario": "10:00 AM - 6:00 PM"
+        },
+        {
+          "dia_semana": "Jueves",
+          "horario": "12:00 PM - 8:00 PM"
+        },
+        {
+          "dia_semana": "Viernes",
+          "horario": "1:00 PM - 9:00 PM"
+        },
+        {
+          "dia_semana": "Sabado",
+          "horario": "6:00 AM - 2:00 PM"
+        }
+      ]
+    },
+    {
+      "trabajador_id": 23,
+      "nombre": "Mayra Alexandra Pinzon",
+      "area_id": 7,
+      "area": "RESTAURANTE CAFE DE LAS LETRAS",
+      "horarios": [
+        {
+          "dia_semana": "Domingo",
+          "horario": "7:00 AM - 3:00 PM"
+        },
+        {
+          "dia_semana": "Lunes",
+          "horario": "8:00 AM - 4:00 PM"
+        },
+        {
+          "dia_semana": "Martes",
+          "horario": "10:00 AM - 6:00 PM"
+        },
+        {
+          "dia_semana": "Miercoles",
+          "horario": "12:00 PM - 8:00 PM"
+        },
+        {
+          "dia_semana": "Jueves",
+          "horario": "1:00 PM - 9:00 PM"
+        },
+        {
+          "dia_semana": "Viernes",
+          "horario": "6:00 AM - 2:00 PM"
+        },
+        {
+          "dia_semana": "Sabado",
+          "horario": "7:00 AM - 3:00 PM"
+        }
+      ]
+    },
+    {
+      "trabajador_id": 24,
+      "nombre": "Alexandra Prieto",
+      "area_id": 1,
+      "area": "EVENTOS",
+      "horarios": [
+        {
+          "dia_semana": "Domingo",
+          "horario": "8:00 AM - 4:00 PM"
+        },
+        {
+          "dia_semana": "Lunes",
+          "horario": "10:00 AM - 6:00 PM"
+        },
+        {
+          "dia_semana": "Martes",
+          "horario": "12:00 PM - 8:00 PM"
+        },
+        {
+          "dia_semana": "Miercoles",
+          "horario": "1:00 PM - 9:00 PM"
+        },
+        {
+          "dia_semana": "Jueves",
+          "horario": "6:00 AM - 2:00 PM"
+        },
+        {
+          "dia_semana": "Viernes",
+          "horario": "7:00 AM - 3:00 PM"
+        },
+        {
+          "dia_semana": "Sabado",
+          "horario": "8:00 AM - 4:00 PM"
+        }
+      ]
+    },
+    {
+      "trabajador_id": 25,
+      "nombre": "Alejandra Sanchez",
+      "area_id": 2,
+      "area": "BARRA DE BOCADOS",
+      "horarios": [
+        {
+          "dia_semana": "Domingo",
+          "horario": "10:00 AM - 6:00 PM"
+        },
+        {
+          "dia_semana": "Lunes",
+          "horario": "12:00 PM - 8:00 PM"
+        },
+        {
+          "dia_semana": "Martes",
+          "horario": "1:00 PM - 9:00 PM"
+        },
+        {
+          "dia_semana": "Miercoles",
+          "horario": "6:00 AM - 2:00 PM"
+        },
+        {
+          "dia_semana": "Jueves",
+          "horario": "7:00 AM - 3:00 PM"
+        },
+        {
+          "dia_semana": "Viernes",
+          "horario": "8:00 AM - 4:00 PM"
+        },
+        {
+          "dia_semana": "Sabado",
+          "horario": "10:00 AM - 6:00 PM"
+        }
+      ]
+    },
+    {
+      "trabajador_id": 26,
+      "nombre": "William Huertas",
+      "area_id": 3,
+      "area": "Concepta",
+      "horarios": [
+        {
+          "dia_semana": "Domingo",
+          "horario": "12:00 PM - 8:00 PM"
+        },
+        {
+          "dia_semana": "Lunes",
+          "horario": "1:00 PM - 9:00 PM"
+        },
+        {
+          "dia_semana": "Martes",
+          "horario": "6:00 AM - 2:00 PM"
+        },
+        {
+          "dia_semana": "Miercoles",
+          "horario": "7:00 AM - 3:00 PM"
+        },
+        {
+          "dia_semana": "Jueves",
+          "horario": "8:00 AM - 4:00 PM"
+        },
+        {
+          "dia_semana": "Viernes",
+          "horario": "10:00 AM - 6:00 PM"
+        },
+        {
+          "dia_semana": "Sabado",
+          "horario": "12:00 PM - 8:00 PM"
+        }
+      ]
+    },
+    {
+      "trabajador_id": 28,
+      "nombre": "Leidy Martinez",
+      "area_id": 4,
+      "area": "TACTICA-BOLERA",
+      "horarios": [
+        {
+          "dia_semana": "Domingo",
+          "horario": "1:00 PM - 9:00 PM"
+        },
+        {
+          "dia_semana": "Lunes",
+          "horario": "6:00 AM - 2:00 PM"
+        },
+        {
+          "dia_semana": "Martes",
+          "horario": "7:00 AM - 3:00 PM"
+        },
+        {
+          "dia_semana": "Miercoles",
+          "horario": "8:00 AM - 4:00 PM"
+        },
+        {
+          "dia_semana": "Jueves",
+          "horario": "10:00 AM - 6:00 PM"
+        },
+        {
+          "dia_semana": "Viernes",
+          "horario": "12:00 PM - 8:00 PM"
+        },
+        {
+          "dia_semana": "Sabado",
+          "horario": "1:00 PM - 9:00 PM"
+        }
+      ]
+    },
+    {
+      "trabajador_id": 29,
+      "nombre": "Angie Gamba",
+      "area_id": 5,
+      "area": "BOLERA",
+      "horarios": [
+        {
+          "dia_semana": "Domingo",
+          "horario": "6:00 AM - 2:00 PM"
+        },
+        {
+          "dia_semana": "Lunes",
+          "horario": "7:00 AM - 3:00 PM"
+        },
+        {
+          "dia_semana": "Martes",
+          "horario": "8:00 AM - 4:00 PM"
+        },
+        {
+          "dia_semana": "Miercoles",
+          "horario": "10:00 AM - 6:00 PM"
+        },
+        {
+          "dia_semana": "Jueves",
+          "horario": "12:00 PM - 8:00 PM"
+        },
+        {
+          "dia_semana": "Viernes",
+          "horario": "1:00 PM - 9:00 PM"
+        },
+        {
+          "dia_semana": "Sabado",
+          "horario": "6:00 AM - 2:00 PM"
+        }
+      ]
+    },
+    {
+      "trabajador_id": 30,
+      "nombre": "Viviana Moreno",
+      "area_id": 6,
+      "area": "AUTO",
+      "horarios": [
+        {
+          "dia_semana": "Domingo",
+          "horario": "7:00 AM - 3:00 PM"
+        },
+        {
+          "dia_semana": "Lunes",
+          "horario": "8:00 AM - 4:00 PM"
+        },
+        {
+          "dia_semana": "Martes",
+          "horario": "10:00 AM - 6:00 PM"
+        },
+        {
+          "dia_semana": "Miercoles",
+          "horario": "12:00 PM - 8:00 PM"
+        },
+        {
+          "dia_semana": "Jueves",
+          "horario": "1:00 PM - 9:00 PM"
+        },
+        {
+          "dia_semana": "Viernes",
+          "horario": "6:00 AM - 2:00 PM"
+        },
+        {
+          "dia_semana": "Sabado",
+          "horario": "7:00 AM - 3:00 PM"
+        }
+      ]
+    },
+    {
+      "trabajador_id": 31,
+      "nombre": "Edgar Valderrama",
+      "area_id": 1,
+      "area": "EVENTOS",
+      "horarios": [
+        {
+          "dia_semana": "Domingo",
+          "horario": "8:00 AM - 4:00 PM"
+        },
+        {
+          "dia_semana": "Lunes",
+          "horario": "10:00 AM - 6:00 PM"
+        },
+        {
+          "dia_semana": "Martes",
+          "horario": "12:00 PM - 8:00 PM"
+        },
+        {
+          "dia_semana": "Miercoles",
+          "horario": "1:00 PM - 9:00 PM"
+        },
+        {
+          "dia_semana": "Jueves",
+          "horario": "6:00 AM - 2:00 PM"
+        },
+        {
+          "dia_semana": "Viernes",
+          "horario": "7:00 AM - 3:00 PM"
+        },
+        {
+          "dia_semana": "Sabado",
+          "horario": "8:00 AM - 4:00 PM"
+        }
+      ]
+    },
+    {
+      "trabajador_id": 32,
+      "nombre": "Arceliano Stiven Amaya",
+      "area_id": 2,
+      "area": "BARRA DE BOCADOS",
+      "horarios": [
+        {
+          "dia_semana": "Domingo",
+          "horario": "10:00 AM - 6:00 PM"
+        },
+        {
+          "dia_semana": "Lunes",
+          "horario": "12:00 PM - 8:00 PM"
+        },
+        {
+          "dia_semana": "Martes",
+          "horario": "1:00 PM - 9:00 PM"
+        },
+        {
+          "dia_semana": "Miercoles",
+          "horario": "6:00 AM - 2:00 PM"
+        },
+        {
+          "dia_semana": "Jueves",
+          "horario": "7:00 AM - 3:00 PM"
+        },
+        {
+          "dia_semana": "Viernes",
+          "horario": "8:00 AM - 4:00 PM"
+        },
+        {
+          "dia_semana": "Sabado",
+          "horario": "10:00 AM - 6:00 PM"
+        }
+      ]
+    },
+    {
+      "trabajador_id": 33,
+      "nombre": "Willian Paez",
+      "area_id": 3,
+      "area": "Concepta",
+      "horarios": [
+        {
+          "dia_semana": "Domingo",
+          "horario": "12:00 PM - 8:00 PM"
+        },
+        {
+          "dia_semana": "Lunes",
+          "horario": "1:00 PM - 9:00 PM"
+        },
+        {
+          "dia_semana": "Martes",
+          "horario": "6:00 AM - 2:00 PM"
+        },
+        {
+          "dia_semana": "Miercoles",
+          "horario": "7:00 AM - 3:00 PM"
+        },
+        {
+          "dia_semana": "Jueves",
+          "horario": "8:00 AM - 4:00 PM"
+        },
+        {
+          "dia_semana": "Viernes",
+          "horario": "10:00 AM - 6:00 PM"
+        },
+        {
+          "dia_semana": "Sabado",
+          "horario": "12:00 PM - 8:00 PM"
+        }
+      ]
+    },
+    {
+      "trabajador_id": 34,
+      "nombre": "Nidia Carolina Leal",
+      "area_id": 4,
+      "area": "TACTICA-BOLERA",
+      "horarios": [
+        {
+          "dia_semana": "Domingo",
+          "horario": "1:00 PM - 9:00 PM"
+        },
+        {
+          "dia_semana": "Lunes",
+          "horario": "6:00 AM - 2:00 PM"
+        },
+        {
+          "dia_semana": "Martes",
+          "horario": "7:00 AM - 3:00 PM"
+        },
+        {
+          "dia_semana": "Miercoles",
+          "horario": "8:00 AM - 4:00 PM"
+        },
+        {
+          "dia_semana": "Jueves",
+          "horario": "10:00 AM - 6:00 PM"
+        },
+        {
+          "dia_semana": "Viernes",
+          "horario": "12:00 PM - 8:00 PM"
+        },
+        {
+          "dia_semana": "Sabado",
+          "horario": "1:00 PM - 9:00 PM"
+        }
+      ]
+    },
+    {
+      "trabajador_id": 35,
+      "nombre": "Jimmy Paez",
+      "area_id": 5,
+      "area": "BOLERA",
+      "horarios": [
+        {
+          "dia_semana": "Domingo",
+          "horario": "6:00 AM - 2:00 PM"
+        },
+        {
+          "dia_semana": "Lunes",
+          "horario": "7:00 AM - 3:00 PM"
+        },
+        {
+          "dia_semana": "Martes",
+          "horario": "8:00 AM - 4:00 PM"
+        },
+        {
+          "dia_semana": "Miercoles",
+          "horario": "10:00 AM - 6:00 PM"
+        },
+        {
+          "dia_semana": "Jueves",
+          "horario": "12:00 PM - 8:00 PM"
+        },
+        {
+          "dia_semana": "Viernes",
+          "horario": "1:00 PM - 9:00 PM"
+        },
+        {
+          "dia_semana": "Sabado",
+          "horario": "6:00 AM - 2:00 PM"
+        }
+      ]
+    },
+    {
+      "trabajador_id": 38,
+      "nombre": "Leidy Pinzon",
+      "area_id": 7,
+      "area": "RESTAURANTE CAFE DE LAS LETRAS",
+      "horarios": [
+        {
+          "dia_semana": "Domingo",
+          "horario": "7:00 AM - 3:00 PM"
+        },
+        {
+          "dia_semana": "Lunes",
+          "horario": "8:00 AM - 4:00 PM"
+        },
+        {
+          "dia_semana": "Martes",
+          "horario": "10:00 AM - 6:00 PM"
+        },
+        {
+          "dia_semana": "Miercoles",
+          "horario": "12:00 PM - 8:00 PM"
+        },
+        {
+          "dia_semana": "Jueves",
+          "horario": "1:00 PM - 9:00 PM"
+        },
+        {
+          "dia_semana": "Viernes",
+          "horario": "6:00 AM - 2:00 PM"
+        },
+        {
+          "dia_semana": "Sabado",
+          "horario": "7:00 AM - 3:00 PM"
+        }
+      ]
+    },
+    {
+      "trabajador_id": 39,
+      "nombre": "Viviana Sanchez",
+      "area_id": 6,
+      "area": "AUTO",
+      "horarios": [
+        {
+          "dia_semana": "Domingo",
+          "horario": "8:00 AM - 4:00 PM"
+        },
+        {
+          "dia_semana": "Lunes",
+          "horario": "10:00 AM - 6:00 PM"
+        },
+        {
+          "dia_semana": "Martes",
+          "horario": "12:00 PM - 8:00 PM"
+        },
+        {
+          "dia_semana": "Miercoles",
+          "horario": "1:00 PM - 9:00 PM"
+        },
+        {
+          "dia_semana": "Jueves",
+          "horario": "6:00 AM - 2:00 PM"
+        },
+        {
+          "dia_semana": "Viernes",
+          "horario": "7:00 AM - 3:00 PM"
+        },
+        {
+          "dia_semana": "Sabado",
+          "horario": "8:00 AM - 4:00 PM"
+        }
+      ]
+    },
+    {
+      "trabajador_id": 40,
+      "nombre": "German Velasco",
+      "area_id": 7,
+      "area": "RESTAURANTE CAFE DE LAS LETRAS",
+      "horarios": [
+        {
+          "dia_semana": "Domingo",
+          "horario": "10:00 AM - 6:00 PM"
+        },
+        {
+          "dia_semana": "Lunes",
+          "horario": "12:00 PM - 8:00 PM"
+        },
+        {
+          "dia_semana": "Martes",
+          "horario": "1:00 PM - 9:00 PM"
+        },
+        {
+          "dia_semana": "Miercoles",
+          "horario": "6:00 AM - 2:00 PM"
+        },
+        {
+          "dia_semana": "Jueves",
+          "horario": "7:00 AM - 3:00 PM"
+        },
+        {
+          "dia_semana": "Viernes",
+          "horario": "8:00 AM - 4:00 PM"
+        },
+        {
+          "dia_semana": "Sabado",
+          "horario": "10:00 AM - 6:00 PM"
+        }
+      ]
+    }
+  ]
+}

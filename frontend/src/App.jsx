@@ -1,7 +1,36 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import './App.css';
 
-const API = 'http://localhost:3000/api';
+const API = '/api';
+const CLAVE_NAVEGACION = 'horarios:navegacion:v1';
+
+function leerNavegacion() {
+  try {
+    const datos = JSON.parse(localStorage.getItem(CLAVE_NAVEGACION));
+    return datos && typeof datos === 'object' ? datos : {};
+  } catch {
+    return {};
+  }
+}
+
+function guardarNavegacion(cambios) {
+  try {
+    localStorage.setItem(CLAVE_NAVEGACION, JSON.stringify({ ...leerNavegacion(), ...cambios }));
+  } catch {
+    // La app sigue funcionando si el navegador no permite almacenamiento.
+  }
+}
+
+async function pedirJson(url, opciones) {
+  const respuesta = await fetch(url, opciones);
+  const datos = await respuesta.json().catch(() => ({}));
+
+  if (!respuesta.ok) {
+    throw new Error(datos.mensaje || datos.error || 'Error del servidor');
+  }
+
+  return datos;
+}
 
 const DIAS = [
   { clave: 'Domingo', titulo: 'DOM', desplazamiento: -1 },
@@ -134,14 +163,16 @@ function calcularHoras(horario) {
     }
 
     // Separar la hora de entrada y salida.
-    const partes = texto.split(/\s*[-–—]\s*/);
+    const partes = texto.match(
+        /^\s*(\d{1,4}(?::\d{2})?\s*(?:AM|PM)?)\s*[-–—]\s*(\d{1,4}(?::\d{2})?\s*(?:AM|PM)?)/i
+    );
 
-    if (partes.length !== 2) {
+    if (!partes) {
         return 0;
     }
 
-    const entrada = convertirHora(partes[0]);
-    const salida = convertirHora(partes[1]);
+    const entrada = convertirHora(partes[1]);
+    const salida = convertirHora(partes[2]);
 
     if (entrada === null || salida === null) {
         return 0;
@@ -158,6 +189,33 @@ function calcularHoras(horario) {
     return Math.floor(diferencia / 60);
 }
 
+function anchoColumna(valores, minimo) {
+  return valores.reduce(
+    (ancho, valor) => Math.min(
+      26,
+      Math.max(ancho, String(valor || '').length + 2)
+    ),
+    minimo
+  );
+}
+
+function ajustarAlturaCeldaHorario(celda) {
+  if (!celda) return;
+  celda.style.height = 'auto';
+  celda.style.height = `${celda.scrollHeight}px`;
+}
+
+
+function prioridadCargo(cargo) {
+  const normalizado = String(cargo || '').trim().toUpperCase().replace(/[\s_-]+/g, '');
+  if (normalizado === 'BARMAN') return 0;
+  if (normalizado === 'AUXBARMAN' || normalizado === 'AUXILIARBARMAN' || normalizado === 'AUXILIARDEBARMAN') return 1;
+  return 2;
+}
+
+function ordenarPorCargo(a, b) {
+  return prioridadCargo(a.cargo) - prioridadCargo(b.cargo);
+}
 
 function claseHorario(valor) {
   const texto = String(valor || '').trim().toUpperCase();
@@ -173,28 +231,26 @@ function claseHorario(valor) {
 
 function App() {
   const [areas, setAreas] = useState([]);
+  const [datosCargados, setDatosCargados] = useState(false);
   const [trabajadores, setTrabajadores] = useState([]);
   const [horarios, setHorarios] = useState([]);
-  const [semana, setSemana] = useState(obtenerLunes());
+  const [semana, setSemana] = useState(() => {
+    const guardada = leerNavegacion().semana;
+    if (typeof guardada !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(guardada)) return obtenerLunes();
+    const fecha = parsearFecha(guardada);
+    return fechaLocal(fecha) === guardada ? obtenerLunes(fecha) : obtenerLunes();
+  });
   const [semanaCargada, setSemanaCargada] = useState(null);
   const [nuevasAreas, setNuevasAreas] = useState({});
   const [nuevosTrabajadores, setNuevosTrabajadores] = useState({});
   const [mensaje, setMensaje] = useState('');
-  const [vista, setVista] = useState('horarios');
+  const [trabajadorEliminado, setTrabajadorEliminado] = useState(null);
+  const deshaciendoEliminacion = useRef(false);
+  const eliminandoAreas = useRef(new Set());
+  const [vista, setVista] = useState(() => leerNavegacion().vista === 'estadisticas' ? 'estadisticas' : 'horarios');
   const [estadisticas, setEstadisticas] = useState([]);
-  const [cargandoEstadisticas, setCargandoEstadisticas] = useState(false);
+  const [cargandoEstadisticas, setCargandoEstadisticas] = useState(() => leerNavegacion().vista === 'estadisticas');
   const [errorEstadisticas, setErrorEstadisticas] = useState('');
-
-  async function pedirJson(url, opciones) {
-    const respuesta = await fetch(url, opciones);
-    const datos = await respuesta.json().catch(() => ({}));
-
-    if (!respuesta.ok) {
-      throw new Error(datos.mensaje || datos.error || 'Error del servidor');
-    }
-
-    return datos;
-  }
 
   function opcionesJson(method, body) {
     return {
@@ -213,6 +269,7 @@ function App() {
 
       setAreas(listaAreas);
       setTrabajadores(listaTrabajadores);
+      setDatosCargados(true);
     } catch (error) {
       setMensaje(`Error al cargar áreas o trabajadores: ${error.message}`);
     }
@@ -234,6 +291,7 @@ function App() {
 
   useEffect(() => {
     cargarDatos();
+    if (leerNavegacion().vista === 'estadisticas') cargarEstadisticas();
   }, []);
 
   useEffect(() => {
@@ -255,6 +313,87 @@ function App() {
       vigente = false;
     };
   }, [semana]);
+
+  const posicionRestaurada = useRef(null);
+
+  useEffect(() => {
+    guardarNavegacion({ vista, semana });
+  }, [vista, semana]);
+
+  useEffect(() => {
+    const clave = vista + ':' + semana;
+    if (posicionRestaurada.current === clave) return;
+    if (vista === 'horarios' && (semanaCargada !== semana || !datosCargados)) return;
+    if (vista === 'estadisticas' && cargandoEstadisticas) return;
+    const posiciones = leerNavegacion().posiciones || {};
+    const posicion = posiciones[clave] || {};
+    const frame = requestAnimationFrame(() => {
+      window.scrollTo({ left: Number(posicion.x) || 0, top: Number(posicion.y) || 0, behavior: 'instant' });
+      const tabla = document.querySelector('.tabla-contenedor');
+      if (tabla) {
+        tabla.scrollLeft = Number(posicion.tablaX) || 0;
+        tabla.scrollTop = Number(posicion.tablaY) || 0;
+      }
+      posicionRestaurada.current = clave;
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [vista, semana, semanaCargada, datosCargados, cargandoEstadisticas, areas.length, trabajadores.length, estadisticas.length]);
+
+  useEffect(() => {
+    const clave = vista + ':' + semana;
+    function guardarPosicion() {
+      if (posicionRestaurada.current !== clave) return;
+      const tabla = document.querySelector('.tabla-contenedor');
+      const posiciones = leerNavegacion().posiciones || {};
+      guardarNavegacion({ posiciones: { ...posiciones, [clave]: {
+        x: window.scrollX, y: window.scrollY,
+        tablaX: tabla?.scrollLeft || 0, tablaY: tabla?.scrollTop || 0
+      } } });
+    }
+    window.addEventListener('scroll', guardarPosicion, true);
+    window.addEventListener('pagehide', guardarPosicion);
+    return () => {
+      window.removeEventListener('scroll', guardarPosicion, true);
+      window.removeEventListener('pagehide', guardarPosicion);
+    };
+  }, [vista, semana]);
+
+  const deshacerEliminacion = useCallback(async () => {
+    if (!trabajadorEliminado || deshaciendoEliminacion.current) return;
+
+    deshaciendoEliminacion.current = true;
+    let restaurado = false;
+    try {
+      await pedirJson(
+        `${API}/trabajadores/${trabajadorEliminado.id}/reactivar`,
+        { method: 'POST' }
+      );
+      setTrabajadores(actual => [
+        ...actual.filter(item => Number(item.id) !== Number(trabajadorEliminado.id)),
+        trabajadorEliminado
+      ].sort((a, b) => Number(a.id) - Number(b.id)));
+      setTrabajadorEliminado(null);
+      setMensaje(`${trabajadorEliminado.nombre} fue restaurado en la tabla`);
+      restaurado = true;
+    } catch (error) {
+      setMensaje(`No se pudo restaurar al mesero: ${error.message}`);
+    } finally {
+      if (!restaurado) deshaciendoEliminacion.current = false;
+    }
+  }, [trabajadorEliminado]);
+
+  useEffect(() => {
+    function manejarAtajoDeshacer(evento) {
+      if (!(evento.ctrlKey || evento.metaKey) || evento.key.toLowerCase() !== 'z') return;
+      if (!trabajadorEliminado) return;
+
+      evento.preventDefault();
+      deshacerEliminacion();
+    }
+
+    window.addEventListener('keydown', manejarAtajoDeshacer);
+    return () => window.removeEventListener('keydown', manejarAtajoDeshacer);
+  }, [deshacerEliminacion, trabajadorEliminado]);
 
   async function agregarArea(evento) {
     evento.preventDefault();
@@ -288,6 +427,30 @@ function App() {
       setMensaje('Trabajador agregado correctamente');
     } catch (error) {
       setMensaje(`No se pudo agregar el trabajador: ${error.message}`);
+    }
+  }
+
+  async function manejarEnterArea(evento, area) {
+    if (evento.key !== 'Enter' || evento.nativeEvent?.isComposing) return;
+    evento.preventDefault();
+    if (evento.repeat || eliminandoAreas.current.has(area.id)) return;
+    const campo = evento.currentTarget;
+    if (campo.value.trim()) {
+      campo.blur();
+      return;
+    }
+    eliminandoAreas.current.add(area.id);
+    campo.blur();
+    try {
+      await pedirJson(`${API}/areas/${area.id}`, { method: 'DELETE' });
+      setAreas(actual => actual.filter(item => Number(item.id) !== Number(area.id)));
+      await cargarDatos();
+      setMensaje(`El area ${area.nombre} fue desactivada. Sus registros se conservan.`);
+    } catch (error) {
+      campo.value = area.nombre;
+      setMensaje(`No se pudo eliminar el area: ${error.message}`);
+    } finally {
+      eliminandoAreas.current.delete(area.id);
     }
   }
 
@@ -326,6 +489,54 @@ function App() {
     }
   }
 
+  async function moverTrabajador(trabajador, areaId) {
+    if (semanaCargada !== semana || Number(areaId) === obtenerAreaSemana(trabajador)) return;
+    try {
+      await pedirJson(`${API}/trabajadores/${trabajador.id}/area`, opcionesJson('PUT', {
+        area_id: Number(areaId), semana_inicio: semana
+      }));
+      const datos = await pedirJson(`${API}/horarios?semana_inicio=${semana}`);
+      if (semanaActual.current !== semana) return;
+      setHorarios(datos);
+      setTrabajadores(actual => actual.map(item => Number(item.id) === Number(trabajador.id)
+        ? { ...item, area_id: Number(areaId) } : item));
+      setMensaje('Mesero trasladado. Su historial y el acumulado de otras semanas se conservan.');
+    } catch (error) {
+      setMensaje(`No se pudo trasladar al mesero: ${error.message}`);
+    }
+  }
+
+  async function eliminarTrabajador(trabajador) {
+    try {
+      await pedirJson(`${API}/trabajadores/${trabajador.id}`, { method: 'DELETE' });
+      setTrabajadores(actual =>
+        actual.filter(item => Number(item.id) !== Number(trabajador.id))
+      );
+      deshaciendoEliminacion.current = false;
+      setTrabajadorEliminado(trabajador);
+      setMensaje(`${trabajador.nombre} fue eliminado. Puedes deshacerlo con Ctrl+Z.`);
+      return true;
+    } catch (error) {
+      setMensaje(`No se pudo eliminar al mesero: ${error.message}`);
+      return false;
+    }
+  }
+
+  async function manejarEnterNombre(evento, trabajador) {
+    if (evento.key !== 'Enter') return;
+
+    evento.preventDefault();
+    const campo = evento.currentTarget;
+    if (campo.value.trim()) {
+      campo.blur();
+      return;
+    }
+
+    campo.blur();
+    const eliminado = await eliminarTrabajador(trabajador);
+    if (!eliminado) campo.value = trabajador.nombre;
+  }
+
   function obtenerHorario(trabajadorId, dia) {
     const encontrado = horarios.find(item =>
       Number(item.trabajador_id) === Number(trabajadorId) &&
@@ -335,6 +546,42 @@ function App() {
     return encontrado?.horario || 'LIBRE';
   }
 
+  function obtenerAuxiliarSemana() {
+    const barman = trabajadores.find(item => prioridadCargo(item.cargo) === 0);
+    if (!barman) return null;
+    const areaBar = obtenerAreaSemana(barman);
+    const candidatos = trabajadores.filter(item =>
+      prioridadCargo(item.cargo) !== 0 && obtenerAreaSemana(item) === areaBar
+    );
+    return candidatos.find(item => prioridadCargo(item.cargo) === 1)
+      || candidatos.slice().sort((a, b) => Number(a.id) - Number(b.id))[0]
+      || null;
+  }
+
+  function obtenerCargoSemana(trabajador) {
+    if (prioridadCargo(trabajador.cargo) === 0) return trabajador.cargo;
+    const auxiliar = obtenerAuxiliarSemana();
+    if (Number(auxiliar?.id) === Number(trabajador.id)) return 'AUX-BARMAN';
+    return prioridadCargo(trabajador.cargo) === 1 ? 'MESERO' : trabajador.cargo || 'MESERO';
+  }
+
+  function ordenarPersonalSemana(a, b) {
+    return ordenarPorCargo({ cargo: obtenerCargoSemana(a) }, { cargo: obtenerCargoSemana(b) });
+  }
+
+  function obtenerAreaSemana(trabajador) {
+    const registros = horarios.filter(item =>
+      Number(item.trabajador_id) === Number(trabajador.id) && item.area_id != null
+    );
+    const primero = registros.reduce((anterior, item) =>
+      !anterior || Number(item.id) < Number(anterior.id) ? item : anterior, null
+    );
+    return Number(primero?.area_id ?? trabajador.area_id);
+  }
+
+  const semanaActual = useRef(semana);
+  useEffect(() => { semanaActual.current = semana; }, [semana]);
+
   async function guardarHorario(trabajadorId, dia, valor) {
     if (semanaCargada !== semana) return;
 
@@ -342,20 +589,21 @@ function App() {
     if (horario === obtenerHorario(trabajadorId, dia)) return;
 
     try {
-      await pedirJson(`${API}/horarios`, opcionesJson('POST', {
+      const guardado = await pedirJson(`${API}/horarios`, opcionesJson('POST', {
         trabajador_id: trabajadorId,
         semana_inicio: semana,
         dia_semana: dia,
         horario
       }));
 
+      if (semanaActual.current !== semana) return;
       setHorarios(actual => {
         const otros = actual.filter(item => !(
           Number(item.trabajador_id) === Number(trabajadorId) &&
           item.dia_semana === dia
         ));
 
-        return [...otros, { trabajador_id: trabajadorId, dia_semana: dia, horario }];
+        return [...otros, { ...guardado, trabajador_id: trabajadorId, dia_semana: dia, horario }];
       });
     } catch (error) {
       setMensaje(`No se pudo guardar el horario: ${error.message}`);
@@ -400,7 +648,12 @@ function App() {
       hoja.columns = [
         { key: 'trabajador', width: 30 },
         { key: 'cargo', width: 17 },
-        ...DIAS.map(() => ({ width: 18 })),
+        ...DIAS.map(dia => ({
+          width: anchoColumna(
+            trabajadores.map(trabajador => obtenerHorario(trabajador.id, dia.clave)),
+            18
+          )
+        })),
         { key: 'total', width: 15 }
       ];
 
@@ -447,13 +700,13 @@ function App() {
         filaArea.height = 27;
 
         const personal = trabajadores.filter(
-          trabajador => Number(trabajador.area_id) === Number(area.id)
-        );
+          trabajador => obtenerAreaSemana(trabajador) === Number(area.id)
+        ).sort(ordenarPersonalSemana);
 
         for (const trabajador of personal) {
           const fila = hoja.addRow([
             trabajador.nombre,
-            trabajador.cargo || 'MESERO',
+            obtenerCargoSemana(trabajador),
             ...DIAS.map(dia => obtenerHorario(trabajador.id, dia.clave)),
             `${totalHoras(trabajador.id)} h`
           ]);
@@ -469,7 +722,8 @@ function App() {
             cell.alignment = {
               vertical: 'middle',
               horizontal: numeroColumna === 1 ? 'left' : 'center',
-              indent: numeroColumna === 1 ? 1 : 0
+              indent: numeroColumna === 1 ? 1 : 0,
+              wrapText: numeroColumna >= 3 && numeroColumna <= 9
             };
             cell.border = {
               bottom: { style: 'thin', color: { argb: 'FFE8EEEB' } }
@@ -483,7 +737,7 @@ function App() {
               const estado = String(cell.value).trim().toUpperCase();
               const coloresEstado = {
                 DESCANSO: ['FFFFF1C9', 'FF634000'],
-                COMPENSATORIO: ['FFE7F2FF', 'FF23486F'],
+                COMPENSATORIO: ['FFFFF1C9', 'FF634000'],
                 INCAPACIDAD: ['FFFCE4DD', 'FF793827'],
                 LICENCIA: ['FFF8DFEB', 'FF71314F'],
                 LIBRE: ['FFF1F4F3', 'FF596966']
@@ -540,26 +794,39 @@ function App() {
   }
 
   const cargando = semanaCargada !== semana;
-  const areasEstadisticas = [...new Set(estadisticas.map(item => item.area_id))]
-    .map(areaId => {
-      const meseros = estadisticas.filter(item => item.area_id === areaId);
-      return {
-        areaId,
-        area: meseros[0].area,
-        meseros
-      };
-    });
-  const totalDiasTrabajados = estadisticas.reduce(
-    (total, item) => total + Number(item.dias_trabajados),
-    0
-  );
+  const areasEstadisticas = [...new Map(estadisticas.map(item => [
+    String(item.area_id), { id: String(item.area_id), nombre: item.area }
+  ])).values()];
+  const meserosPorId = new Map();
+  const totalesPorArea = new Map();
+  let totalDiasTrabajados = 0;
+  for (const item of estadisticas) {
+    const id = String(item.trabajador_id);
+    const areaId = String(item.area_id);
+    const dias = Number(item.dias_trabajados) || 0;
+    if (!meserosPorId.has(id)) {
+      meserosPorId.set(id, { id, nombre: item.trabajador, diasPorArea: new Map(), total: 0 });
+    }
+    const mesero = meserosPorId.get(id);
+    mesero.diasPorArea.set(areaId, dias);
+    mesero.total += dias;
+    totalesPorArea.set(areaId, (totalesPorArea.get(areaId) || 0) + dias);
+    totalDiasTrabajados += dias;
+  }
+  const meserosEstadisticas = [...meserosPorId.values()]
+    .sort((a, b) => a.nombre.localeCompare(b.nombre, 'es'));
 
   return (
     <div className="aplicacion">
       <header className="encabezado">
-        <div>
+        <div className="identidad-encabezado">
+          <div className="logo-institucional">
+            <img src="/colsubsidio.svg" alt="Colsubsidio" width="181" height="36" />
+          </div>
+          <div>
           <h1>CONTROL DE HORARIOS</h1>
           <p>Programación semanal del personal</p>
+        </div>
         </div>
         <span className="indicador">Planilla de meseros</span>
       </header>
@@ -588,7 +855,7 @@ function App() {
         </nav>
 
         {vista === 'horarios' ? (
-        <section className="panel">
+        <section className="panel panel-planilla">
           <div className="titulo-horarios">
             <div>
               <h2>PROGRAMACIÓN DE TURNOS</h2>
@@ -607,8 +874,8 @@ function App() {
                   }
                 }}
               />
-              <button type="button" onClick={() => cambiarSemana(-7)}>←</button>
-              <button type="button" onClick={() => cambiarSemana(7)}>→</button>
+              <button type="button" aria-label="Semana anterior" onClick={() => cambiarSemana(-7)}>←</button>
+              <button type="button" aria-label="Semana siguiente" onClick={() => cambiarSemana(7)}>→</button>
               <button
                 type="button"
                 className="boton-excel"
@@ -622,14 +889,38 @@ function App() {
             </div>
           </div>
 
-          <div className="tabla-contenedor">
+          <div className="resumen-planilla">
+            <div className="periodo-planilla">
+              <span className="icono-periodo" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7"><rect x="3" y="5" width="18" height="16" rx="3" /><path d="M7 3v4M17 3v4M3 11h18M7 15h3M14 15h3" /></svg>
+              </span>
+              <div>
+                <span>PROGRAMACIÓN SEMANAL</span>
+                <strong>{fechaDeDia(semana, -1).toLocaleDateString('es-CO', { day: 'numeric', month: 'short' })} — {fechaDeDia(semana, 5).toLocaleDateString('es-CO', { day: 'numeric', month: 'short', year: 'numeric' })}</strong>
+              </div>
+            </div>
+            <div className="cifras-planilla">
+              <span><strong>{trabajadores.length}</strong> personas</span>
+              <span><strong>{areas.length}</strong> áreas</span>
+              <span className="estado-planilla" role="status">{cargando ? 'Cargando turnos…' : 'Semana cargada'}</span>
+            </div>
+          </div>
+          <div className="leyenda-planilla" aria-label="Colores de los estados">
+            <span className="titulo-leyenda">ESTADOS</span>
+            <span><i className="punto-descanso" />Descanso</span>
+            <span><i className="punto-compensatorio" />Compensatorio</span>
+            <span><i className="punto-incapacidad" />Incapacidad</span>
+            <span><i className="punto-licencia" />Licencia</span>
+            <span><i className="punto-libre" />Libre</span>
+          </div>
+          <div className="tabla-contenedor tabla-planilla-contenedor">
             <table className="tabla-horarios">
               <thead>
                 <tr>
                   <th className="columna-trabajador">MESEROS</th>
                   <th className="columna-cargo">CARGO</th>
                   {DIAS.map(dia => (
-                    <th key={dia.clave} className="encabezado-dia">
+                    <th key={dia.clave} className={`encabezado-dia ${fechaLocal(fechaDeDia(semana, dia.desplazamiento)) === fechaLocal(new Date()) ? 'dia-hoy' : ''}`}>
                       <span>{dia.titulo}</span>
                       <span className="fecha-dia">
                         {fechaDeDia(semana, dia.desplazamiento).toLocaleDateString(
@@ -646,21 +937,25 @@ function App() {
               <tbody>
                 {areas.map(area => {
                   const personal = trabajadores.filter(trabajador =>
-                    Number(trabajador.area_id) === Number(area.id)
-                  );
+                    obtenerAreaSemana(trabajador) === Number(area.id)
+                  ).sort(ordenarPersonalSemana);
 
                   return (
                     <React.Fragment key={area.id}>
                       <tr className="fila-area">
                         <td colSpan={10}>
+                          <div className="area-info">
+                          <span className="marca-area" aria-hidden="true" />
                           <input
                             className="nombre-editable"
                             aria-label={`Editar área ${area.nombre}`}
                             key={`${area.id}-${area.nombre}`}
                             defaultValue={area.nombre}
-                            onKeyDown={enterGuarda}
+                            onKeyDown={evento => manejarEnterArea(evento, area)}
                             onBlur={evento => editarArea(area, evento.target.value)}
                           />
+                          <span className="conteo-area">{personal.length} {personal.length === 1 ? 'persona' : 'personas'}</span>
+                          </div>
                         </td>
                       </tr>
 
@@ -672,19 +967,29 @@ function App() {
                               aria-label={`Editar nombre de ${trabajador.nombre}`}
                               key={`${trabajador.id}-${trabajador.nombre}`}
                               defaultValue={trabajador.nombre}
-                              onKeyDown={enterGuarda}
+                              onKeyDown={evento => manejarEnterNombre(evento, trabajador)}
                               onBlur={evento => editarTrabajador(
                                 trabajador, 'nombre', evento.target.value
                               )}
                             />
+                            <select
+                              className="selector-area-mesero"
+                              aria-label={`Mover de area a ${trabajador.nombre}`}
+                              title="Traslada al mesero en esta semana conservando su historial"
+                              value={obtenerAreaSemana(trabajador)}
+                              disabled={cargando}
+                              onChange={evento => moverTrabajador(trabajador, evento.target.value)}
+                            >
+                              {areas.map(destino => <option key={destino.id} value={destino.id}>{destino.nombre}</option>)}
+                            </select>
                           </td>
 
                           <td className="celda-cargo">
                             <input
                               className="cargo-editable"
                               aria-label={`Cargo de ${trabajador.nombre}`}
-                              key={`${trabajador.id}-${trabajador.cargo}`}
-                              defaultValue={trabajador.cargo || 'MESERO'}
+                              key={`${trabajador.id}-${obtenerCargoSemana(trabajador)}`}
+                              defaultValue={obtenerCargoSemana(trabajador)}
                               onKeyDown={enterGuarda}
                               onBlur={evento => editarTrabajador(
                                 trabajador, 'cargo', evento.target.value
@@ -699,13 +1004,17 @@ function App() {
 
                             return (
                               <td className="celda" key={dia.clave}>
-                                <input
+                                <textarea
                                   className={`celda-horario ${claseHorario(valor)}`}
                                   aria-label={`Horario de ${trabajador.nombre} el ${dia.clave}`}
                                   key={`${trabajador.id}-${dia.clave}-${semana}-${valor}`}
-                                  defaultValue={valor}
+                                  defaultValue={valor === 'LIBRE' ? '' : valor}
+                                  placeholder={cargando ? '' : 'LIBRE'}
+                                  rows={1}
+                                  ref={ajustarAlturaCeldaHorario}
                                   disabled={cargando}
                                   onKeyDown={enterGuarda}
+                                  onInput={evento => ajustarAlturaCeldaHorario(evento.currentTarget)}
                                   onBlur={evento => guardarHorario(
                                     trabajador.id, dia.clave, evento.target.value
                                   )}
@@ -715,7 +1024,7 @@ function App() {
                           })}
 
                           <td className="total-horas">
-                            {cargando ? '...' : `${totalHoras(trabajador.id)} h`}
+                            <span className="insignia-horas">{cargando ? '...' : totalHoras(trabajador.id)}<small> h</small></span>
                           </td>
                         </tr>
                       ))}
@@ -774,11 +1083,17 @@ function App() {
           <p className="ayuda">
             Turnos: 8:00 AM - 4:30 PM · DESCANSO · COMPENSATORIO ·
             INCAPACIDAD · LICENCIA. Las medias horas no se suman al total.
+            Cada turno se registra en el área asignada al guardarlo.
           </p>
 
           {mensaje && (
             <div className="mensaje" role="alert">
               <span>{mensaje}</span>
+              {trabajadorEliminado && (
+                <button type="button" onClick={deshacerEliminacion}>
+                  Deshacer
+                </button>
+              )}
               <button type="button" onClick={() => setMensaje('')}>
                 Cerrar
               </button>
@@ -792,7 +1107,8 @@ function App() {
                 <span className="eyebrow-estadisticas">RESUMEN DEL EQUIPO</span>
                 <h2>Días trabajados por área</h2>
                 <p>
-                  Consulta cuántos días con turno tiene registrados cada mesero en cada área.
+                  Acumulado de todas las semanas: consulta los días que cada mesero ha trabajado
+                  en cada área.
                 </p>
               </div>
               <button
@@ -806,8 +1122,11 @@ function App() {
             </div>
 
             <p className="nota-estadisticas">
+              El conteo no se reinicia al cambiar de semana. Se muestran todos los meseros en cada
+              área y cada día trabajado se suma al área que tenía asignada al guardar ese turno.
               No se cuentan días libres, descansos, incapacidades, licencias ni compensatorios.
-              Los horarios anteriores a la actualización se asociarán al área actual del mesero.
+              Los horarios anteriores al registro histórico se asignaron al área actual y no se
+              pueden reconstruir.
             </p>
 
             {cargandoEstadisticas ? (
@@ -831,58 +1150,60 @@ function App() {
                   <article className="tarjeta-resumen">
                     <span>Áreas con personal</span>
                     <strong>{areasEstadisticas.length}</strong>
-                    <small>Con historial o meseros activos</small>
+                    <small>Distribución del personal</small>
+                  </article>
+                  <article className="tarjeta-resumen">
+                    <span>Meseros</span>
+                    <strong>{meserosEstadisticas.length}</strong>
+                    <small>Un equipo, todas las semanas</small>
                   </article>
                 </div>
 
-                <div className="grafico-areas">
-                  {areasEstadisticas.map(grupo => {
-                    const totalArea = grupo.meseros.reduce(
-                      (total, item) => total + Number(item.dias_trabajados),
-                      0
-                    );
-                    const maxDias = Math.max(
-                      1,
-                      ...grupo.meseros.map(item => Number(item.dias_trabajados))
-                    );
-
-                    return (
-                      <article className="tarjeta-grafico-area" key={grupo.areaId}>
-                        <header>
-                          <div>
-                            <span className="etiqueta-area">ÁREA</span>
-                            <h3>{grupo.area}</h3>
-                          </div>
-                          <span className="total-area">
-                            {totalArea} {totalArea === 1 ? 'día' : 'días'}
-                          </span>
-                        </header>
-
-                        <ol className="lista-barras">
-                          {grupo.meseros.map(item => {
-                            const dias = Number(item.dias_trabajados);
-                            const proporcion = (dias / maxDias) * 100;
-
-                            return (
-                              <li key={`${grupo.areaId}-${item.trabajador_id}`}>
-                                <div className="detalle-barra">
-                                  <span>{item.trabajador}</span>
-                                  <strong>{dias} {dias === 1 ? 'día' : 'días'}</strong>
-                                </div>
-                                <div
-                                  className="pista-barra"
-                                  role="img"
-                                  aria-label={`${item.trabajador}: ${dias} ${dias === 1 ? 'día' : 'días'} trabajados en ${grupo.area}`}
-                                >
-                                  <span style={{ width: `${proporcion}%` }} />
-                                </div>
-                              </li>
-                            );
-                          })}
-                        </ol>
-                      </article>
-                    );
-                  })}
+                <div className="tabla-contenedor estadisticas-matriz">
+                  <table className="tabla-estadisticas">
+                    <caption>Distribución de turnos por área</caption>
+                    <thead>
+                      <tr>
+                        <th scope="col">Mesero</th>
+                        {areasEstadisticas.map(area => <th scope="col" key={area.id}>{area.nombre}</th>)}
+                        <th scope="col">Total días</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {meserosEstadisticas.map(mesero => (
+                        <tr key={mesero.id}>
+                          <th scope="row">
+                            <div className="identidad-mesero">
+                              <span className="avatar-mesero" aria-hidden="true">{mesero.nombre.trim().split(/\s+/).slice(0, 2).map(parte => parte[0]).join('')}</span>
+                              <span>{mesero.nombre}</span>
+                            </div>
+                          </th>
+                          {areasEstadisticas.map(area => (
+                            <td key={area.id}>
+                              <div className="dato-area">
+                                <span className={(mesero.diasPorArea.get(area.id) || 0) ? 'dias-con-turno' : 'dias-sin-turno'}>
+                                  {(mesero.diasPorArea.get(area.id) || 0).toLocaleString('es-CO')}
+                                </span>
+                                <span className="barra-distribucion" aria-hidden="true">
+                                  <span style={{ width: ((mesero.diasPorArea.get(area.id) || 0) / Math.max(1, mesero.total) * 100) + '%' }} />
+                                </span>
+                              </div>
+                            </td>
+                          ))}
+                          <td className="total-estadisticas"><span className="insignia-total">{mesero.total.toLocaleString('es-CO')}<small> días</small></span></td>
+                        </tr>
+                      ))}
+                    </tbody>
+                    <tfoot>
+                      <tr>
+                        <th scope="row">Total por área</th>
+                        {areasEstadisticas.map(area => (
+                          <td key={area.id}>{(totalesPorArea.get(area.id) || 0).toLocaleString('es-CO')}</td>
+                        ))}
+                        <td>{totalDiasTrabajados.toLocaleString('es-CO')}</td>
+                      </tr>
+                    </tfoot>
+                  </table>
                 </div>
               </>
             )}

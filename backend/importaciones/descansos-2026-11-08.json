@@ -1,0 +1,1229 @@
+{
+  "semana_inicio": "2026-11-09",
+  "plan": [
+    {
+      "trabajador_id": 4,
+      "nombre": "Adriana Salcedo",
+      "trabajaDomingo": true,
+      "horas": 42,
+      "turnos": [
+        {
+          "dia_semana": "Domingo",
+          "horario": "6:00 AM - 1:00 PM"
+        },
+        {
+          "dia_semana": "Lunes",
+          "horario": "COMPENSATORIO"
+        },
+        {
+          "dia_semana": "Martes",
+          "horario": "8:00 AM - 3:00 PM"
+        },
+        {
+          "dia_semana": "Miercoles",
+          "horario": "11:00 AM - 6:00 PM"
+        },
+        {
+          "dia_semana": "Jueves",
+          "horario": "1:00 PM - 8:00 PM"
+        },
+        {
+          "dia_semana": "Viernes",
+          "horario": "6:00 AM - 1:00 PM"
+        },
+        {
+          "dia_semana": "Sabado",
+          "horario": "7:00 AM - 2:00 PM"
+        }
+      ]
+    },
+    {
+      "trabajador_id": 5,
+      "nombre": "Paola Hernandez",
+      "trabajaDomingo": false,
+      "horas": 42,
+      "turnos": [
+        {
+          "dia_semana": "Domingo",
+          "horario": "DESCANSO"
+        },
+        {
+          "dia_semana": "Lunes",
+          "horario": "8:00 AM - 3:00 PM"
+        },
+        {
+          "dia_semana": "Martes",
+          "horario": "11:00 AM - 6:00 PM"
+        },
+        {
+          "dia_semana": "Miercoles",
+          "horario": "1:00 PM - 8:00 PM"
+        },
+        {
+          "dia_semana": "Jueves",
+          "horario": "6:00 AM - 1:00 PM"
+        },
+        {
+          "dia_semana": "Viernes",
+          "horario": "7:00 AM - 2:00 PM"
+        },
+        {
+          "dia_semana": "Sabado",
+          "horario": "8:00 AM - 3:00 PM"
+        }
+      ]
+    },
+    {
+      "trabajador_id": 6,
+      "nombre": "Maria Teresa Sierra",
+      "trabajaDomingo": true,
+      "horas": 42,
+      "turnos": [
+        {
+          "dia_semana": "Domingo",
+          "horario": "8:00 AM - 3:00 PM"
+        },
+        {
+          "dia_semana": "Lunes",
+          "horario": "11:00 AM - 6:00 PM"
+        },
+        {
+          "dia_semana": "Martes",
+          "horario": "1:00 PM - 8:00 PM"
+        },
+        {
+          "dia_semana": "Miercoles",
+          "horario": "COMPENSATORIO"
+        },
+        {
+          "dia_semana": "Jueves",
+          "horario": "7:00 AM - 2:00 PM"
+        },
+        {
+          "dia_semana": "Viernes",
+          "horario": "8:00 AM - 3:00 PM"
+        },
+        {
+          "dia_semana": "Sabado",
+          "horario": "11:00 AM - 6:00 PM"
+        }
+      ]
+    },
+    {
+      "trabajador_id": 7,
+      "nombre": "Jessika Guerrero",
+      "trabajaDomingo": false,
+      "horas": 42,
+      "turnos": [
+        {
+          "dia_semana": "Domingo",
+          "horario": "DESCANSO"
+        },
+        {
+          "dia_semana": "Lunes",
+          "horario": "1:00 PM - 8:00 PM"
+        },
+        {
+          "dia_semana": "Martes",
+          "horario": "6:00 AM - 1:00 PM"
+        },
+        {
+          "dia_semana": "Miercoles",
+          "horario": "7:00 AM - 2:00 PM"
+        },
+        {
+          "dia_semana": "Jueves",
+          "horario": "8:00 AM - 3:00 PM"
+        },
+        {
+          "dia_semana": "Viernes",
+          "horario": "11:00 AM - 6:00 PM"
+        },
+        {
+          "dia_semana": "Sabado",
+          "horario": "1:00 PM - 8:00 PM"
+        }
+      ]
+    },
+    {
+      "trabajador_id": 8,
+      "nombre": "Maira Rodriguez",
+      "trabajaDomingo": true,
+      "horas": 42,
+      "turnos": [
+        {
+          "dia_semana": "Domingo",
+          "horario": "1:00 PM - 8:00 PM"
+        },
+        {
+          "dia_semana": "Lunes",
+          "horario": "6:00 AM - 1:00 PM"
+        },
+        {
+          "dia_semana": "Martes",
+          "horario": "7:00 AM - 2:00 PM"
+        },
+        {
+          "dia_semana": "Miercoles",
+          "horario": "8:00 AM - 3:00 PM"
+        },
+        {
+          "dia_semana": "Jueves",
+          "horario": "11:00 AM - 6:00 PM"
+        },
+        {
+          "dia_semana": "Viernes",
+          "horario": "COMPENSATORIO"
+        },
+        {
+          "dia_semana": "Sabado",
+          "horario": "6:00 AM - 1:00 PM"
+        }
+      ]
+    },
+    {
+      "trabajador_id": 9,
+      "nombre": "Cesar Guayara",
+      "trabajaDomingo": false,
+      "horas": 42,
+      "turnos": [
+        {
+          "dia_semana": "Domingo",
+          "horario": "DESCANSO"
+        },
+        {
+          "dia_semana": "Lunes",
+          "horario": "7:00 AM - 2:00 PM"
+        },
+        {
+          "dia_semana": "Martes",
+          "horario": "8:00 AM - 3:00 PM"
+        },
+        {
+          "dia_semana": "Miercoles",
+          "horario": "11:00 AM - 6:00 PM"
+        },
+        {
+          "dia_semana": "Jueves",
+          "horario": "1:00 PM - 8:00 PM"
+        },
+        {
+          "dia_semana": "Viernes",
+          "horario": "6:00 AM - 1:00 PM"
+        },
+        {
+          "dia_semana": "Sabado",
+          "horario": "7:00 AM - 2:00 PM"
+        }
+      ]
+    },
+    {
+      "trabajador_id": 10,
+      "nombre": "Nelson Reyes",
+      "trabajaDomingo": true,
+      "horas": 42,
+      "turnos": [
+        {
+          "dia_semana": "Domingo",
+          "horario": "7:00 AM - 2:00 PM"
+        },
+        {
+          "dia_semana": "Lunes",
+          "horario": "COMPENSATORIO"
+        },
+        {
+          "dia_semana": "Martes",
+          "horario": "11:00 AM - 6:00 PM"
+        },
+        {
+          "dia_semana": "Miercoles",
+          "horario": "1:00 PM - 8:00 PM"
+        },
+        {
+          "dia_semana": "Jueves",
+          "horario": "6:00 AM - 1:00 PM"
+        },
+        {
+          "dia_semana": "Viernes",
+          "horario": "7:00 AM - 2:00 PM"
+        },
+        {
+          "dia_semana": "Sabado",
+          "horario": "8:00 AM - 3:00 PM"
+        }
+      ]
+    },
+    {
+      "trabajador_id": 11,
+      "nombre": "Rafael Ruiz",
+      "trabajaDomingo": false,
+      "horas": 42,
+      "turnos": [
+        {
+          "dia_semana": "Domingo",
+          "horario": "DESCANSO"
+        },
+        {
+          "dia_semana": "Lunes",
+          "horario": "11:00 AM - 6:00 PM"
+        },
+        {
+          "dia_semana": "Martes",
+          "horario": "1:00 PM - 8:00 PM"
+        },
+        {
+          "dia_semana": "Miercoles",
+          "horario": "6:00 AM - 1:00 PM"
+        },
+        {
+          "dia_semana": "Jueves",
+          "horario": "7:00 AM - 2:00 PM"
+        },
+        {
+          "dia_semana": "Viernes",
+          "horario": "8:00 AM - 3:00 PM"
+        },
+        {
+          "dia_semana": "Sabado",
+          "horario": "11:00 AM - 6:00 PM"
+        }
+      ]
+    },
+    {
+      "trabajador_id": 12,
+      "nombre": "Andres Corredor",
+      "trabajaDomingo": true,
+      "horas": 42,
+      "turnos": [
+        {
+          "dia_semana": "Domingo",
+          "horario": "11:00 AM - 6:00 PM"
+        },
+        {
+          "dia_semana": "Lunes",
+          "horario": "1:00 PM - 8:00 PM"
+        },
+        {
+          "dia_semana": "Martes",
+          "horario": "6:00 AM - 1:00 PM"
+        },
+        {
+          "dia_semana": "Miercoles",
+          "horario": "COMPENSATORIO"
+        },
+        {
+          "dia_semana": "Jueves",
+          "horario": "8:00 AM - 3:00 PM"
+        },
+        {
+          "dia_semana": "Viernes",
+          "horario": "11:00 AM - 6:00 PM"
+        },
+        {
+          "dia_semana": "Sabado",
+          "horario": "1:00 PM - 8:00 PM"
+        }
+      ]
+    },
+    {
+      "trabajador_id": 13,
+      "nombre": "Camila Aponte",
+      "trabajaDomingo": false,
+      "horas": 42,
+      "turnos": [
+        {
+          "dia_semana": "Domingo",
+          "horario": "DESCANSO"
+        },
+        {
+          "dia_semana": "Lunes",
+          "horario": "6:00 AM - 1:00 PM"
+        },
+        {
+          "dia_semana": "Martes",
+          "horario": "7:00 AM - 2:00 PM"
+        },
+        {
+          "dia_semana": "Miercoles",
+          "horario": "8:00 AM - 3:00 PM"
+        },
+        {
+          "dia_semana": "Jueves",
+          "horario": "11:00 AM - 6:00 PM"
+        },
+        {
+          "dia_semana": "Viernes",
+          "horario": "1:00 PM - 8:00 PM"
+        },
+        {
+          "dia_semana": "Sabado",
+          "horario": "6:00 AM - 1:00 PM"
+        }
+      ]
+    },
+    {
+      "trabajador_id": 14,
+      "nombre": "Alexander Ramos",
+      "trabajaDomingo": true,
+      "horas": 42,
+      "turnos": [
+        {
+          "dia_semana": "Domingo",
+          "horario": "6:00 AM - 1:00 PM"
+        },
+        {
+          "dia_semana": "Lunes",
+          "horario": "7:00 AM - 2:00 PM"
+        },
+        {
+          "dia_semana": "Martes",
+          "horario": "8:00 AM - 3:00 PM"
+        },
+        {
+          "dia_semana": "Miercoles",
+          "horario": "11:00 AM - 6:00 PM"
+        },
+        {
+          "dia_semana": "Jueves",
+          "horario": "1:00 PM - 8:00 PM"
+        },
+        {
+          "dia_semana": "Viernes",
+          "horario": "COMPENSATORIO"
+        },
+        {
+          "dia_semana": "Sabado",
+          "horario": "7:00 AM - 2:00 PM"
+        }
+      ]
+    },
+    {
+      "trabajador_id": 15,
+      "nombre": "Jaime Vargas",
+      "trabajaDomingo": false,
+      "horas": 42,
+      "turnos": [
+        {
+          "dia_semana": "Domingo",
+          "horario": "DESCANSO"
+        },
+        {
+          "dia_semana": "Lunes",
+          "horario": "8:00 AM - 3:00 PM"
+        },
+        {
+          "dia_semana": "Martes",
+          "horario": "11:00 AM - 6:00 PM"
+        },
+        {
+          "dia_semana": "Miercoles",
+          "horario": "1:00 PM - 8:00 PM"
+        },
+        {
+          "dia_semana": "Jueves",
+          "horario": "6:00 AM - 1:00 PM"
+        },
+        {
+          "dia_semana": "Viernes",
+          "horario": "7:00 AM - 2:00 PM"
+        },
+        {
+          "dia_semana": "Sabado",
+          "horario": "8:00 AM - 3:00 PM"
+        }
+      ]
+    },
+    {
+      "trabajador_id": 16,
+      "nombre": "Juan Reyes",
+      "trabajaDomingo": true,
+      "horas": 42,
+      "turnos": [
+        {
+          "dia_semana": "Domingo",
+          "horario": "8:00 AM - 3:00 PM"
+        },
+        {
+          "dia_semana": "Lunes",
+          "horario": "COMPENSATORIO"
+        },
+        {
+          "dia_semana": "Martes",
+          "horario": "1:00 PM - 8:00 PM"
+        },
+        {
+          "dia_semana": "Miercoles",
+          "horario": "6:00 AM - 1:00 PM"
+        },
+        {
+          "dia_semana": "Jueves",
+          "horario": "7:00 AM - 2:00 PM"
+        },
+        {
+          "dia_semana": "Viernes",
+          "horario": "8:00 AM - 3:00 PM"
+        },
+        {
+          "dia_semana": "Sabado",
+          "horario": "11:00 AM - 6:00 PM"
+        }
+      ]
+    },
+    {
+      "trabajador_id": 17,
+      "nombre": "Valentina Avila",
+      "trabajaDomingo": false,
+      "horas": 42,
+      "turnos": [
+        {
+          "dia_semana": "Domingo",
+          "horario": "DESCANSO"
+        },
+        {
+          "dia_semana": "Lunes",
+          "horario": "1:00 PM - 8:00 PM"
+        },
+        {
+          "dia_semana": "Martes",
+          "horario": "6:00 AM - 1:00 PM"
+        },
+        {
+          "dia_semana": "Miercoles",
+          "horario": "7:00 AM - 2:00 PM"
+        },
+        {
+          "dia_semana": "Jueves",
+          "horario": "8:00 AM - 3:00 PM"
+        },
+        {
+          "dia_semana": "Viernes",
+          "horario": "11:00 AM - 6:00 PM"
+        },
+        {
+          "dia_semana": "Sabado",
+          "horario": "1:00 PM - 8:00 PM"
+        }
+      ]
+    },
+    {
+      "trabajador_id": 18,
+      "nombre": "Jinneth Ulloa",
+      "trabajaDomingo": true,
+      "horas": 42,
+      "turnos": [
+        {
+          "dia_semana": "Domingo",
+          "horario": "1:00 PM - 8:00 PM"
+        },
+        {
+          "dia_semana": "Lunes",
+          "horario": "6:00 AM - 1:00 PM"
+        },
+        {
+          "dia_semana": "Martes",
+          "horario": "7:00 AM - 2:00 PM"
+        },
+        {
+          "dia_semana": "Miercoles",
+          "horario": "COMPENSATORIO"
+        },
+        {
+          "dia_semana": "Jueves",
+          "horario": "11:00 AM - 6:00 PM"
+        },
+        {
+          "dia_semana": "Viernes",
+          "horario": "1:00 PM - 8:00 PM"
+        },
+        {
+          "dia_semana": "Sabado",
+          "horario": "6:00 AM - 1:00 PM"
+        }
+      ]
+    },
+    {
+      "trabajador_id": 19,
+      "nombre": "Johana Monroy",
+      "trabajaDomingo": false,
+      "horas": 42,
+      "turnos": [
+        {
+          "dia_semana": "Domingo",
+          "horario": "DESCANSO"
+        },
+        {
+          "dia_semana": "Lunes",
+          "horario": "7:00 AM - 2:00 PM"
+        },
+        {
+          "dia_semana": "Martes",
+          "horario": "8:00 AM - 3:00 PM"
+        },
+        {
+          "dia_semana": "Miercoles",
+          "horario": "11:00 AM - 6:00 PM"
+        },
+        {
+          "dia_semana": "Jueves",
+          "horario": "1:00 PM - 8:00 PM"
+        },
+        {
+          "dia_semana": "Viernes",
+          "horario": "6:00 AM - 1:00 PM"
+        },
+        {
+          "dia_semana": "Sabado",
+          "horario": "7:00 AM - 2:00 PM"
+        }
+      ]
+    },
+    {
+      "trabajador_id": 20,
+      "nombre": "Yurany Rivas",
+      "trabajaDomingo": true,
+      "horas": 42,
+      "turnos": [
+        {
+          "dia_semana": "Domingo",
+          "horario": "7:00 AM - 2:00 PM"
+        },
+        {
+          "dia_semana": "Lunes",
+          "horario": "8:00 AM - 3:00 PM"
+        },
+        {
+          "dia_semana": "Martes",
+          "horario": "11:00 AM - 6:00 PM"
+        },
+        {
+          "dia_semana": "Miercoles",
+          "horario": "1:00 PM - 8:00 PM"
+        },
+        {
+          "dia_semana": "Jueves",
+          "horario": "6:00 AM - 1:00 PM"
+        },
+        {
+          "dia_semana": "Viernes",
+          "horario": "COMPENSATORIO"
+        },
+        {
+          "dia_semana": "Sabado",
+          "horario": "8:00 AM - 3:00 PM"
+        }
+      ]
+    },
+    {
+      "trabajador_id": 21,
+      "nombre": "Giovanny Rodriguez",
+      "trabajaDomingo": false,
+      "horas": 42,
+      "turnos": [
+        {
+          "dia_semana": "Domingo",
+          "horario": "DESCANSO"
+        },
+        {
+          "dia_semana": "Lunes",
+          "horario": "11:00 AM - 6:00 PM"
+        },
+        {
+          "dia_semana": "Martes",
+          "horario": "1:00 PM - 8:00 PM"
+        },
+        {
+          "dia_semana": "Miercoles",
+          "horario": "6:00 AM - 1:00 PM"
+        },
+        {
+          "dia_semana": "Jueves",
+          "horario": "7:00 AM - 2:00 PM"
+        },
+        {
+          "dia_semana": "Viernes",
+          "horario": "8:00 AM - 3:00 PM"
+        },
+        {
+          "dia_semana": "Sabado",
+          "horario": "11:00 AM - 6:00 PM"
+        }
+      ]
+    },
+    {
+      "trabajador_id": 22,
+      "nombre": "Julian Medina",
+      "trabajaDomingo": true,
+      "horas": 42,
+      "turnos": [
+        {
+          "dia_semana": "Domingo",
+          "horario": "11:00 AM - 6:00 PM"
+        },
+        {
+          "dia_semana": "Lunes",
+          "horario": "COMPENSATORIO"
+        },
+        {
+          "dia_semana": "Martes",
+          "horario": "6:00 AM - 1:00 PM"
+        },
+        {
+          "dia_semana": "Miercoles",
+          "horario": "7:00 AM - 2:00 PM"
+        },
+        {
+          "dia_semana": "Jueves",
+          "horario": "8:00 AM - 3:00 PM"
+        },
+        {
+          "dia_semana": "Viernes",
+          "horario": "11:00 AM - 6:00 PM"
+        },
+        {
+          "dia_semana": "Sabado",
+          "horario": "1:00 PM - 8:00 PM"
+        }
+      ]
+    },
+    {
+      "trabajador_id": 23,
+      "nombre": "Mayra Alexandra Pinzon",
+      "trabajaDomingo": false,
+      "horas": 42,
+      "turnos": [
+        {
+          "dia_semana": "Domingo",
+          "horario": "DESCANSO"
+        },
+        {
+          "dia_semana": "Lunes",
+          "horario": "6:00 AM - 1:00 PM"
+        },
+        {
+          "dia_semana": "Martes",
+          "horario": "7:00 AM - 2:00 PM"
+        },
+        {
+          "dia_semana": "Miercoles",
+          "horario": "8:00 AM - 3:00 PM"
+        },
+        {
+          "dia_semana": "Jueves",
+          "horario": "11:00 AM - 6:00 PM"
+        },
+        {
+          "dia_semana": "Viernes",
+          "horario": "1:00 PM - 8:00 PM"
+        },
+        {
+          "dia_semana": "Sabado",
+          "horario": "6:00 AM - 1:00 PM"
+        }
+      ]
+    },
+    {
+      "trabajador_id": 24,
+      "nombre": "Alexandra Prieto",
+      "trabajaDomingo": true,
+      "horas": 42,
+      "turnos": [
+        {
+          "dia_semana": "Domingo",
+          "horario": "6:00 AM - 1:00 PM"
+        },
+        {
+          "dia_semana": "Lunes",
+          "horario": "7:00 AM - 2:00 PM"
+        },
+        {
+          "dia_semana": "Martes",
+          "horario": "8:00 AM - 3:00 PM"
+        },
+        {
+          "dia_semana": "Miercoles",
+          "horario": "COMPENSATORIO"
+        },
+        {
+          "dia_semana": "Jueves",
+          "horario": "1:00 PM - 8:00 PM"
+        },
+        {
+          "dia_semana": "Viernes",
+          "horario": "6:00 AM - 1:00 PM"
+        },
+        {
+          "dia_semana": "Sabado",
+          "horario": "7:00 AM - 2:00 PM"
+        }
+      ]
+    },
+    {
+      "trabajador_id": 25,
+      "nombre": "Alejandra Sanchez",
+      "trabajaDomingo": false,
+      "horas": 42,
+      "turnos": [
+        {
+          "dia_semana": "Domingo",
+          "horario": "DESCANSO"
+        },
+        {
+          "dia_semana": "Lunes",
+          "horario": "8:00 AM - 3:00 PM"
+        },
+        {
+          "dia_semana": "Martes",
+          "horario": "11:00 AM - 6:00 PM"
+        },
+        {
+          "dia_semana": "Miercoles",
+          "horario": "1:00 PM - 8:00 PM"
+        },
+        {
+          "dia_semana": "Jueves",
+          "horario": "6:00 AM - 1:00 PM"
+        },
+        {
+          "dia_semana": "Viernes",
+          "horario": "7:00 AM - 2:00 PM"
+        },
+        {
+          "dia_semana": "Sabado",
+          "horario": "8:00 AM - 3:00 PM"
+        }
+      ]
+    },
+    {
+      "trabajador_id": 26,
+      "nombre": "William Huertas",
+      "trabajaDomingo": true,
+      "horas": 42,
+      "turnos": [
+        {
+          "dia_semana": "Domingo",
+          "horario": "8:00 AM - 3:00 PM"
+        },
+        {
+          "dia_semana": "Lunes",
+          "horario": "11:00 AM - 6:00 PM"
+        },
+        {
+          "dia_semana": "Martes",
+          "horario": "1:00 PM - 8:00 PM"
+        },
+        {
+          "dia_semana": "Miercoles",
+          "horario": "6:00 AM - 1:00 PM"
+        },
+        {
+          "dia_semana": "Jueves",
+          "horario": "7:00 AM - 2:00 PM"
+        },
+        {
+          "dia_semana": "Viernes",
+          "horario": "COMPENSATORIO"
+        },
+        {
+          "dia_semana": "Sabado",
+          "horario": "11:00 AM - 6:00 PM"
+        }
+      ]
+    },
+    {
+      "trabajador_id": 28,
+      "nombre": "Leidy Martinez",
+      "trabajaDomingo": false,
+      "horas": 42,
+      "turnos": [
+        {
+          "dia_semana": "Domingo",
+          "horario": "DESCANSO"
+        },
+        {
+          "dia_semana": "Lunes",
+          "horario": "1:00 PM - 8:00 PM"
+        },
+        {
+          "dia_semana": "Martes",
+          "horario": "6:00 AM - 1:00 PM"
+        },
+        {
+          "dia_semana": "Miercoles",
+          "horario": "7:00 AM - 2:00 PM"
+        },
+        {
+          "dia_semana": "Jueves",
+          "horario": "8:00 AM - 3:00 PM"
+        },
+        {
+          "dia_semana": "Viernes",
+          "horario": "11:00 AM - 6:00 PM"
+        },
+        {
+          "dia_semana": "Sabado",
+          "horario": "1:00 PM - 8:00 PM"
+        }
+      ]
+    },
+    {
+      "trabajador_id": 29,
+      "nombre": "Angie Gamba",
+      "trabajaDomingo": true,
+      "horas": 42,
+      "turnos": [
+        {
+          "dia_semana": "Domingo",
+          "horario": "1:00 PM - 8:00 PM"
+        },
+        {
+          "dia_semana": "Lunes",
+          "horario": "COMPENSATORIO"
+        },
+        {
+          "dia_semana": "Martes",
+          "horario": "7:00 AM - 2:00 PM"
+        },
+        {
+          "dia_semana": "Miercoles",
+          "horario": "8:00 AM - 3:00 PM"
+        },
+        {
+          "dia_semana": "Jueves",
+          "horario": "11:00 AM - 6:00 PM"
+        },
+        {
+          "dia_semana": "Viernes",
+          "horario": "1:00 PM - 8:00 PM"
+        },
+        {
+          "dia_semana": "Sabado",
+          "horario": "6:00 AM - 1:00 PM"
+        }
+      ]
+    },
+    {
+      "trabajador_id": 30,
+      "nombre": "Viviana Moreno",
+      "trabajaDomingo": false,
+      "horas": 42,
+      "turnos": [
+        {
+          "dia_semana": "Domingo",
+          "horario": "DESCANSO"
+        },
+        {
+          "dia_semana": "Lunes",
+          "horario": "7:00 AM - 2:00 PM"
+        },
+        {
+          "dia_semana": "Martes",
+          "horario": "8:00 AM - 3:00 PM"
+        },
+        {
+          "dia_semana": "Miercoles",
+          "horario": "11:00 AM - 6:00 PM"
+        },
+        {
+          "dia_semana": "Jueves",
+          "horario": "1:00 PM - 8:00 PM"
+        },
+        {
+          "dia_semana": "Viernes",
+          "horario": "6:00 AM - 1:00 PM"
+        },
+        {
+          "dia_semana": "Sabado",
+          "horario": "7:00 AM - 2:00 PM"
+        }
+      ]
+    },
+    {
+      "trabajador_id": 31,
+      "nombre": "Edgar Valderrama",
+      "trabajaDomingo": true,
+      "horas": 42,
+      "turnos": [
+        {
+          "dia_semana": "Domingo",
+          "horario": "7:00 AM - 2:00 PM"
+        },
+        {
+          "dia_semana": "Lunes",
+          "horario": "8:00 AM - 3:00 PM"
+        },
+        {
+          "dia_semana": "Martes",
+          "horario": "11:00 AM - 6:00 PM"
+        },
+        {
+          "dia_semana": "Miercoles",
+          "horario": "COMPENSATORIO"
+        },
+        {
+          "dia_semana": "Jueves",
+          "horario": "6:00 AM - 1:00 PM"
+        },
+        {
+          "dia_semana": "Viernes",
+          "horario": "7:00 AM - 2:00 PM"
+        },
+        {
+          "dia_semana": "Sabado",
+          "horario": "8:00 AM - 3:00 PM"
+        }
+      ]
+    },
+    {
+      "trabajador_id": 32,
+      "nombre": "Arceliano Stiven Amaya",
+      "trabajaDomingo": false,
+      "horas": 42,
+      "turnos": [
+        {
+          "dia_semana": "Domingo",
+          "horario": "DESCANSO"
+        },
+        {
+          "dia_semana": "Lunes",
+          "horario": "11:00 AM - 6:00 PM"
+        },
+        {
+          "dia_semana": "Martes",
+          "horario": "1:00 PM - 8:00 PM"
+        },
+        {
+          "dia_semana": "Miercoles",
+          "horario": "6:00 AM - 1:00 PM"
+        },
+        {
+          "dia_semana": "Jueves",
+          "horario": "7:00 AM - 2:00 PM"
+        },
+        {
+          "dia_semana": "Viernes",
+          "horario": "8:00 AM - 3:00 PM"
+        },
+        {
+          "dia_semana": "Sabado",
+          "horario": "11:00 AM - 6:00 PM"
+        }
+      ]
+    },
+    {
+      "trabajador_id": 33,
+      "nombre": "Willian Paez",
+      "trabajaDomingo": true,
+      "horas": 42,
+      "turnos": [
+        {
+          "dia_semana": "Domingo",
+          "horario": "11:00 AM - 6:00 PM"
+        },
+        {
+          "dia_semana": "Lunes",
+          "horario": "1:00 PM - 8:00 PM"
+        },
+        {
+          "dia_semana": "Martes",
+          "horario": "6:00 AM - 1:00 PM"
+        },
+        {
+          "dia_semana": "Miercoles",
+          "horario": "7:00 AM - 2:00 PM"
+        },
+        {
+          "dia_semana": "Jueves",
+          "horario": "8:00 AM - 3:00 PM"
+        },
+        {
+          "dia_semana": "Viernes",
+          "horario": "COMPENSATORIO"
+        },
+        {
+          "dia_semana": "Sabado",
+          "horario": "1:00 PM - 8:00 PM"
+        }
+      ]
+    },
+    {
+      "trabajador_id": 34,
+      "nombre": "Nidia Carolina Leal",
+      "trabajaDomingo": false,
+      "horas": 42,
+      "turnos": [
+        {
+          "dia_semana": "Domingo",
+          "horario": "DESCANSO"
+        },
+        {
+          "dia_semana": "Lunes",
+          "horario": "6:00 AM - 1:00 PM"
+        },
+        {
+          "dia_semana": "Martes",
+          "horario": "7:00 AM - 2:00 PM"
+        },
+        {
+          "dia_semana": "Miercoles",
+          "horario": "8:00 AM - 3:00 PM"
+        },
+        {
+          "dia_semana": "Jueves",
+          "horario": "11:00 AM - 6:00 PM"
+        },
+        {
+          "dia_semana": "Viernes",
+          "horario": "1:00 PM - 8:00 PM"
+        },
+        {
+          "dia_semana": "Sabado",
+          "horario": "6:00 AM - 1:00 PM"
+        }
+      ]
+    },
+    {
+      "trabajador_id": 35,
+      "nombre": "Jimmy Paez",
+      "trabajaDomingo": true,
+      "horas": 42,
+      "turnos": [
+        {
+          "dia_semana": "Domingo",
+          "horario": "6:00 AM - 1:00 PM"
+        },
+        {
+          "dia_semana": "Lunes",
+          "horario": "COMPENSATORIO"
+        },
+        {
+          "dia_semana": "Martes",
+          "horario": "8:00 AM - 3:00 PM"
+        },
+        {
+          "dia_semana": "Miercoles",
+          "horario": "11:00 AM - 6:00 PM"
+        },
+        {
+          "dia_semana": "Jueves",
+          "horario": "1:00 PM - 8:00 PM"
+        },
+        {
+          "dia_semana": "Viernes",
+          "horario": "6:00 AM - 1:00 PM"
+        },
+        {
+          "dia_semana": "Sabado",
+          "horario": "7:00 AM - 2:00 PM"
+        }
+      ]
+    },
+    {
+      "trabajador_id": 38,
+      "nombre": "Leidy Pinzon",
+      "trabajaDomingo": false,
+      "horas": 42,
+      "turnos": [
+        {
+          "dia_semana": "Domingo",
+          "horario": "DESCANSO"
+        },
+        {
+          "dia_semana": "Lunes",
+          "horario": "8:00 AM - 3:00 PM"
+        },
+        {
+          "dia_semana": "Martes",
+          "horario": "11:00 AM - 6:00 PM"
+        },
+        {
+          "dia_semana": "Miercoles",
+          "horario": "1:00 PM - 8:00 PM"
+        },
+        {
+          "dia_semana": "Jueves",
+          "horario": "6:00 AM - 1:00 PM"
+        },
+        {
+          "dia_semana": "Viernes",
+          "horario": "7:00 AM - 2:00 PM"
+        },
+        {
+          "dia_semana": "Sabado",
+          "horario": "8:00 AM - 3:00 PM"
+        }
+      ]
+    },
+    {
+      "trabajador_id": 39,
+      "nombre": "Viviana Sanchez",
+      "trabajaDomingo": true,
+      "horas": 42,
+      "turnos": [
+        {
+          "dia_semana": "Domingo",
+          "horario": "8:00 AM - 3:00 PM"
+        },
+        {
+          "dia_semana": "Lunes",
+          "horario": "11:00 AM - 6:00 PM"
+        },
+        {
+          "dia_semana": "Martes",
+          "horario": "1:00 PM - 8:00 PM"
+        },
+        {
+          "dia_semana": "Miercoles",
+          "horario": "COMPENSATORIO"
+        },
+        {
+          "dia_semana": "Jueves",
+          "horario": "7:00 AM - 2:00 PM"
+        },
+        {
+          "dia_semana": "Viernes",
+          "horario": "8:00 AM - 3:00 PM"
+        },
+        {
+          "dia_semana": "Sabado",
+          "horario": "11:00 AM - 6:00 PM"
+        }
+      ]
+    },
+    {
+      "trabajador_id": 40,
+      "nombre": "German Velasco",
+      "trabajaDomingo": false,
+      "horas": 42,
+      "turnos": [
+        {
+          "dia_semana": "Domingo",
+          "horario": "DESCANSO"
+        },
+        {
+          "dia_semana": "Lunes",
+          "horario": "1:00 PM - 8:00 PM"
+        },
+        {
+          "dia_semana": "Martes",
+          "horario": "6:00 AM - 1:00 PM"
+        },
+        {
+          "dia_semana": "Miercoles",
+          "horario": "7:00 AM - 2:00 PM"
+        },
+        {
+          "dia_semana": "Jueves",
+          "horario": "8:00 AM - 3:00 PM"
+        },
+        {
+          "dia_semana": "Viernes",
+          "horario": "11:00 AM - 6:00 PM"
+        },
+        {
+          "dia_semana": "Sabado",
+          "horario": "1:00 PM - 8:00 PM"
+        }
+      ]
+    }
+  ]
+}
