@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import './App.css';
+import { apiJson } from './api';
 
 const API = '/api';
 const CLAVE_NAVEGACION = 'horarios:navegacion:v1';
@@ -21,16 +22,7 @@ function guardarNavegacion(cambios) {
   }
 }
 
-async function pedirJson(url, opciones) {
-  const respuesta = await fetch(url, opciones);
-  const datos = await respuesta.json().catch(() => ({}));
-
-  if (!respuesta.ok) {
-    throw new Error(datos.mensaje || datos.error || 'Error del servidor');
-  }
-
-  return datos;
-}
+const pedirJson = apiJson;
 
 const DIAS = [
   { clave: 'Domingo', titulo: 'DOM', desplazamiento: -1 },
@@ -65,27 +57,6 @@ function fechaDeDia(lunes, desplazamiento) {
   fecha.setDate(fecha.getDate() + desplazamiento);
   return fecha;
 }
-
-function minutosHora(texto) {
-  const partes = texto.trim().match(/^(\d{1,2})(?::(\d{2}))?\s*(AM|PM)?$/i);
-  if (!partes) return null;
-
-  let hora = Number(partes[1]);
-  const minutos = Number(partes[2] || 0);
-  const periodo = partes[3]?.toUpperCase();
-
-  if (minutos > 59) return null;
-
-  if (periodo) {
-    if (hora < 1 || hora > 12) return null;
-    hora = (hora % 12) + (periodo === 'PM' ? 12 : 0);
-  } else if (hora > 23) {
-    return null;
-  }
-
-  return hora * 60 + minutos;
-}
-
 
 function calcularHoras(horario) {
     if (!horario || typeof horario !== 'string') {
@@ -290,15 +261,25 @@ function App() {
   }
 
   useEffect(() => {
-    cargarDatos();
-    if (leerNavegacion().vista === 'estadisticas') cargarEstadisticas();
+    let vigente = true;
+    Promise.all([pedirJson(`${API}/areas`), pedirJson(`${API}/trabajadores`)])
+      .then(([listaAreas, listaTrabajadores]) => {
+        if (!vigente) return;
+        setAreas(listaAreas);
+        setTrabajadores(listaTrabajadores);
+        setDatosCargados(true);
+      }).catch(error => { if (vigente) setMensaje(error.message); });
+    if (leerNavegacion().vista === 'estadisticas') {
+      pedirJson(`${API}/estadisticas/meseros-por-area`)
+        .then(datos => { if (vigente) setEstadisticas(datos); })
+        .catch(error => { if (vigente) setErrorEstadisticas(error.message); })
+        .finally(() => { if (vigente) setCargandoEstadisticas(false); });
+    }
+    return () => { vigente = false; };
   }, []);
 
   useEffect(() => {
     let vigente = true;
-    setSemanaCargada(null);
-    setHorarios([]);
-
     pedirJson(`${API}/horarios?semana_inicio=${semana}`)
       .then(datos => {
         if (!vigente) return;

@@ -8,3 +8,9 @@
 # Local backups and system cache
 backend/importaciones/respaldos/
 Microsoft/
+
+# Local authentication secrets (never publish)
+backend/.auth-local.json
+
+# Exportaciones privadas de la base de datos
+database/exportaciones/
