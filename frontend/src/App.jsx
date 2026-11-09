@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import './App.css';
 import { apiJson } from './api';
+import { leerPlanillaExcel } from './importarExcel';
 
 const API = '/api';
 const CLAVE_NAVEGACION = 'horarios:navegacion:v1';
@@ -222,6 +223,9 @@ function App() {
   const [estadisticas, setEstadisticas] = useState([]);
   const [cargandoEstadisticas, setCargandoEstadisticas] = useState(() => leerNavegacion().vista === 'estadisticas');
   const [errorEstadisticas, setErrorEstadisticas] = useState('');
+  const [filasImportacion, setFilasImportacion] = useState([]);
+  const [importando, setImportando] = useState(false);
+  const [errorImportacion, setErrorImportacion] = useState('');
 
   function opcionesJson(method, body) {
     return {
@@ -597,6 +601,40 @@ function App() {
     );
   }
 
+  async function seleccionarExcel(evento) {
+    const archivo = evento.target.files?.[0];
+    evento.target.value = '';
+    if (!archivo) return;
+    setErrorImportacion('');
+    setFilasImportacion([]);
+    try {
+      setFilasImportacion(await leerPlanillaExcel(archivo));
+    } catch (error) {
+      setErrorImportacion(error.message);
+    }
+  }
+
+  async function confirmarImportacion() {
+    if (!filasImportacion.length || importando) return;
+    setImportando(true);
+    setErrorImportacion('');
+    try {
+      const resultado = await pedirJson(`${API}/importacion`, opcionesJson('POST', {
+        semana_inicio: semana,
+        filas: filasImportacion
+      }));
+      setFilasImportacion([]);
+      await cargarDatos();
+      setHorarios(await pedirJson(`${API}/horarios?semana_inicio=${semana}`));
+      setSemanaCargada(semana);
+      setMensaje(`Excel importado: ${resultado.turnosGuardados} turnos, ${resultado.nuevosTrabajadores} trabajadores nuevos y ${resultado.nuevasAreas} áreas nuevas.`);
+    } catch (error) {
+      setErrorImportacion(error.message);
+    } finally {
+      setImportando(false);
+    }
+  }
+
   async function descargarExcel() {
     if (cargando) return;
 
@@ -858,6 +896,10 @@ function App() {
               />
               <button type="button" aria-label="Semana anterior" onClick={() => cambiarSemana(-7)}>←</button>
               <button type="button" aria-label="Semana siguiente" onClick={() => cambiarSemana(7)}>→</button>
+              <label className="boton-excel" style={{ cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+                ↑ Importar Excel
+                <input type="file" accept=".xlsx" onChange={seleccionarExcel} style={{ display: 'none' }} disabled={importando || cargando} />
+              </label>
               <button
                 type="button"
                 className="boton-excel"
@@ -871,6 +913,22 @@ function App() {
             </div>
           </div>
 
+          {errorImportacion && <p role="alert" className="mensaje">{errorImportacion}</p>}
+          {filasImportacion.length > 0 && (
+            <div className="panel" style={{ marginBottom: 16 }}>
+              <h3>Vista previa de importación</h3>
+              <p>Semana seleccionada: {semana}. Se importarán {filasImportacion.length} trabajadores y sus turnos. Los horarios existentes de esta semana para esos trabajadores se actualizarán; las otras semanas se conservarán.</p>
+              <div className="tabla-contenedor" style={{ maxHeight: 260, overflow: 'auto' }}>
+                <table className="tabla-estadisticas"><thead><tr><th>Área</th><th>Mesero</th><th>Cargo</th><th>Turnos</th></tr></thead>
+                  <tbody>{filasImportacion.map((fila, i) => <tr key={i}><td>{fila.area}</td><td>{fila.nombre}</td><td>{fila.cargo}</td><td>{Object.entries(fila.turnos).map(([dia, turno]) => `${dia}: ${turno}`).join(' · ')}</td></tr>)}</tbody>
+                </table>
+              </div>
+              <div style={{ display: 'flex', gap: 12, marginTop: 12 }}>
+                <button type="button" disabled={importando} onClick={confirmarImportacion}>{importando ? 'Importando…' : 'Confirmar y guardar'}</button>
+                <button type="button" disabled={importando} onClick={() => setFilasImportacion([])}>Cancelar</button>
+              </div>
+            </div>
+          )}
           <div className="resumen-planilla">
             <div className="periodo-planilla">
               <span className="icono-periodo" aria-hidden="true">
