@@ -203,6 +203,20 @@ function claseHorario(valor) {
 
 function App() {
   const [areas, setAreas] = useState([]);
+  const [areasContraidas, setAreasContraidas] = useState(() => {
+    try {
+      const guardadas = JSON.parse(localStorage.getItem('horarios:areas-contraidas:v1') || '[]');
+      return Array.isArray(guardadas) ? guardadas.map(String) : [];
+    } catch { return []; }
+  });
+  function alternarArea(id) {
+    setAreasContraidas(actual => {
+      const clave = String(id);
+      const siguiente = actual.includes(clave) ? actual.filter(item => item !== clave) : [...actual, clave];
+      try { localStorage.setItem('horarios:areas-contraidas:v1', JSON.stringify(siguiente)); } catch { /* Sin almacenamiento */ }
+      return siguiente;
+    });
+  }
   const [datosCargados, setDatosCargados] = useState(false);
   const [trabajadores, setTrabajadores] = useState([]);
   const [horarios, setHorarios] = useState([]);
@@ -985,6 +999,13 @@ function App() {
                       <tr className="fila-area">
                         <td colSpan={10}>
                           <div className="area-info">
+                          <button type="button" onClick={() => alternarArea(area.id)}
+                            aria-expanded={!areasContraidas.includes(String(area.id))}
+                            aria-label={`${areasContraidas.includes(String(area.id)) ? 'Expandir' : 'Contraer'} área ${area.nombre}`}
+                            title={areasContraidas.includes(String(area.id)) ? 'Mostrar meseros' : 'Ocultar meseros'}
+                            style={{ border: '1px solid currentColor', borderRadius: 5, background: 'transparent', color: 'inherit', cursor: 'pointer', padding: '3px 9px', fontWeight: 700 }}>
+                            {areasContraidas.includes(String(area.id)) ? '▸' : '▾'}
+                          </button>
                           <span className="marca-area" aria-hidden="true" />
                           <input
                             className="nombre-editable"
@@ -999,7 +1020,7 @@ function App() {
                         </td>
                       </tr>
 
-                      {personal.map(trabajador => (
+                      {!areasContraidas.includes(String(area.id)) && personal.map(trabajador => (
                         <tr className="fila-trabajador" key={trabajador.id}>
                           <td className="nombre-trabajador">
                             <input
@@ -1069,7 +1090,7 @@ function App() {
                         </tr>
                       ))}
 
-                      <tr className="fila-agregar">
+                      {!areasContraidas.includes(String(area.id)) && <tr className="fila-agregar">
                         <td colSpan={10}>
                           <form
                             className="form-agregar"
@@ -1087,7 +1108,7 @@ function App() {
                             />
                           </form>
                         </td>
-                      </tr>
+                      </tr>}
                     </React.Fragment>
                   );
                 })}
