@@ -44,6 +44,7 @@ async function iniciar() {
     app.use('/api/trabajadores', require('./routes/trabajadores'));
     app.use('/api/horarios', require('./routes/horarios'));
     app.use('/api/estadisticas', require('./routes/estadisticas'));
+    app.use('/api/importacion', require('./routes/importacion'));
     app.get('/api/test-db', async (req, res) => { await db.query('SELECT 1'); res.json({ mensaje: 'Servicio disponible' }); });
     app.use('/api', (req, res) => res.status(404).json({ mensaje: 'Ruta no encontrada' }));
     app.use(express.static(path.join(__dirname, '../frontend/dist')));
