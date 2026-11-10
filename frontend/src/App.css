@@ -436,6 +436,28 @@
   transform: translateY(-1px);
 }
 
+.selector-semana label.boton-importar-excel {
+  height: 40px;
+  padding: 0 15px;
+  border: 1px solid #16803d;
+  border-radius: 10px;
+  background: #16803d;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  transition: background .16s ease, border-color .16s ease;
+}
+
+.selector-semana label.boton-importar-excel:hover {
+  background: #11652f;
+  border-color: #11652f;
+}
+
+.selector-semana label.boton-importar-excel:focus-within {
+  outline: 3px solid rgba(22, 128, 61, .25);
+  outline-offset: 2px;
+}
+
 .selector-semana button.boton-excel {
   display: inline-flex;
   width: auto;
