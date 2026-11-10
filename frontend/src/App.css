@@ -1305,3 +1305,6 @@
   .logo-institucional { padding: 11px 14px; }
   .logo-institucional img { width: 151px; }
 }
+
+/* Resaltar las celdas de horarios al seleccionarlas para el borrado masivo. */
+.tabla-horarios td.celda-seleccionada, td.celda-seleccionada { background: #e3f0ff !important; outline: 2px solid #4a86d4; outline-offset: -2px; }
