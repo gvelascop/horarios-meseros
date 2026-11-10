@@ -659,8 +659,8 @@ function App() {
       libro.created = new Date();
 
       const hoja = libro.addWorksheet('Horarios', {
-        properties: { defaultRowHeight: 24 },
-        views: [{ state: 'frozen', ySplit: 4, xSplit: 2, showGridLines: false }],
+        properties: { defaultRowHeight: 19 },
+        views: [{ state: 'frozen', ySplit: 4, xSplit: 2, showGridLines: false, zoomScale: 75, zoomScaleNormal: 75 }],
         pageSetup: {
           paperSize: 9,
           orientation: 'landscape',
@@ -679,33 +679,33 @@ function App() {
       });
 
       hoja.columns = [
-        { key: 'trabajador', width: 30 },
-        { key: 'cargo', width: 17 },
+        { key: 'trabajador', width: 23 },
+        { key: 'cargo', width: 13 },
         ...DIAS.map(dia => ({
-          width: anchoColumna(
+          width: Math.min(15, Math.max(11, anchoColumna(
             trabajadores.map(trabajador => obtenerHorario(trabajador.id, dia.clave)),
-            18
-          )
+            12
+          )))
         })),
-        { key: 'total', width: 15 }
+        { key: 'total', width: 11 }
       ];
 
       hoja.mergeCells('A1:J1');
       const titulo = hoja.getCell('A1');
       titulo.value = 'CONTROL DE HORARIOS';
-      titulo.font = { name: 'Aptos Display', size: 20, bold: true, color: { argb: 'FFFFFFFF' } };
+      titulo.font = { name: 'Aptos Display', size: 15, bold: true, color: { argb: 'FFFFFFFF' } };
       titulo.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FF124E4C' } };
       titulo.alignment = { vertical: 'middle', horizontal: 'left', indent: 1 };
-      hoja.getRow(1).height = 38;
+      hoja.getRow(1).height = 28;
 
       const ultimoDia = fechaDeDia(semana, 6);
       hoja.mergeCells('A2:J2');
       const subtitulo = hoja.getCell('A2');
       subtitulo.value = `PROGRAMACIÓN SEMANAL  ·  ${parsearFecha(semana).toLocaleDateString('es-CO')} – ${ultimoDia.toLocaleDateString('es-CO')}`;
-      subtitulo.font = { name: 'Aptos', size: 11, color: { argb: 'FF536966' } };
+      subtitulo.font = { name: 'Aptos', size: 9, color: { argb: 'FF536966' } };
       subtitulo.alignment = { vertical: 'middle', horizontal: 'left', indent: 1 };
-      hoja.getRow(2).height = 25;
-      hoja.getRow(3).height = 10;
+      hoja.getRow(2).height = 20;
+      hoja.getRow(3).height = 5;
 
       const filaEncabezado = hoja.addRow([
         'MESEROS',
@@ -713,9 +713,9 @@ function App() {
         ...DIAS.map(dia => `${dia.titulo} · ${fechaDeDia(semana, dia.desplazamiento).toLocaleDateString('es-CO', { day: '2-digit', month: '2-digit' })}`),
         'TOTAL HORAS'
       ]);
-      filaEncabezado.height = 32;
+      filaEncabezado.height = 26;
       filaEncabezado.eachCell(cell => {
-        cell.font = { name: 'Aptos', size: 10, bold: true, color: { argb: 'FFFFFFFF' } };
+        cell.font = { name: 'Aptos', size: 8, bold: true, color: { argb: 'FFFFFFFF' } };
         cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FF17615C' } };
         cell.alignment = { vertical: 'middle', horizontal: 'center', wrapText: true };
         cell.border = { bottom: { style: 'medium', color: { argb: 'FF124E4C' } } };
@@ -726,11 +726,11 @@ function App() {
         const numeroFilaArea = filaArea.number;
         hoja.mergeCells(numeroFilaArea, 1, numeroFilaArea, 10);
         const celdaArea = hoja.getCell(numeroFilaArea, 1);
-        celdaArea.font = { name: 'Aptos', size: 11, bold: true, color: { argb: 'FF124E4C' } };
+        celdaArea.font = { name: 'Aptos', size: 9, bold: true, color: { argb: 'FF124E4C' } };
         celdaArea.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFEAF5EF' } };
         celdaArea.alignment = { vertical: 'middle', indent: 1 };
         celdaArea.border = { bottom: { style: 'thin', color: { argb: 'FFD7E9E2' } } };
-        filaArea.height = 27;
+        filaArea.height = 21;
 
         const personal = trabajadores.filter(
           trabajador => obtenerAreaSemana(trabajador) === Number(area.id)
@@ -743,12 +743,12 @@ function App() {
             ...DIAS.map(dia => obtenerHorario(trabajador.id, dia.clave)),
             `${totalHoras(trabajador.id)} h`
           ]);
-          fila.height = 25;
+          fila.height = 21;
 
           fila.eachCell((cell, numeroColumna) => {
             cell.font = {
               name: 'Aptos',
-              size: 10,
+              size: 9,
               bold: numeroColumna === 10,
               color: { argb: numeroColumna === 10 ? 'FF124E4C' : 'FF263D3F' }
             };
@@ -780,7 +780,7 @@ function App() {
                 cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: colores[0] } };
                 cell.font = {
                   name: 'Aptos',
-                  size: 10,
+                  size: 9,
                   bold: estado !== 'LIBRE',
                   color: { argb: colores[1] }
                 };
@@ -910,7 +910,7 @@ function App() {
               />
               <button type="button" aria-label="Semana anterior" onClick={() => cambiarSemana(-7)}>←</button>
               <button type="button" aria-label="Semana siguiente" onClick={() => cambiarSemana(7)}>→</button>
-              <label className="boton-excel" style={{ cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+              <label className="boton-importar-excel" style={{ cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: 6 }}>
                 ↑ Importar Excel
                 <input type="file" accept=".xlsx" onChange={seleccionarExcel} style={{ display: 'none' }} disabled={importando || cargando} />
               </label>
