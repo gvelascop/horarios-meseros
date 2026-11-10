@@ -220,6 +220,8 @@ function App() {
   const [datosCargados, setDatosCargados] = useState(false);
   const [trabajadores, setTrabajadores] = useState([]);
   const [horarios, setHorarios] = useState([]);
+  const [seleccionTodosHorarios, setSeleccionTodosHorarios] = useState(false);
+  const [vaciandoHorarios, setVaciandoHorarios] = useState(false);
   const [semana, setSemana] = useState(() => {
     const guardada = leerNavegacion().semana;
     if (typeof guardada !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(guardada)) return obtenerLunes();
@@ -582,7 +584,7 @@ function App() {
   useEffect(() => { semanaActual.current = semana; }, [semana]);
 
   async function guardarHorario(trabajadorId, dia, valor) {
-    if (semanaCargada !== semana) return;
+    if (semanaCargada !== semana || vaciandoHorarios) return;
 
     const horario = valor.trim() || 'LIBRE';
     if (horario === obtenerHorario(trabajadorId, dia)) return;
@@ -646,6 +648,27 @@ function App() {
       setErrorImportacion(error.message);
     } finally {
       setImportando(false);
+    }
+  }
+
+  async function borrarHorariosSeleccionados() {
+    if (!seleccionTodosHorarios || vaciandoHorarios || cargando || semanaCargada !== semana) return;
+    const confirmacion = window.confirm(
+      `¿Borrar todos los horarios de la semana ${semana}? Los turnos quedarán LIBRE. Los trabajadores y otras semanas se conservarán.`
+    );
+    if (!confirmacion) return;
+    setVaciandoHorarios(true);
+    try {
+      const resultado = await pedirJson(`${API}/horarios/vaciar-semana`, opcionesJson('POST', {
+        semana_inicio: semana
+      }));
+      setHorarios(await pedirJson(`${API}/horarios?semana_inicio=${semana}`));
+      setSeleccionTodosHorarios(false);
+      setMensaje(`Se borraron ${resultado.actualizados} horarios de la semana ${semana}.`);
+    } catch (error) {
+      setMensaje(`No se pudieron borrar los horarios: ${error.message}`);
+    } finally {
+      setVaciandoHorarios(false);
     }
   }
 
@@ -910,6 +933,18 @@ function App() {
               />
               <button type="button" aria-label="Semana anterior" onClick={() => cambiarSemana(-7)}>←</button>
               <button type="button" aria-label="Semana siguiente" onClick={() => cambiarSemana(7)}>→</button>
+              <button type="button" onClick={() => setSeleccionTodosHorarios(actual => !actual)}
+                disabled={cargando || vaciandoHorarios}
+                title="Seleccionar todas las celdas de horarios de la semana"
+                style={{ width: 'auto', padding: '0 12px', fontSize: 12, fontWeight: 700 }}>
+                {seleccionTodosHorarios ? '✓ Todos seleccionados' : 'Seleccionar horarios'}
+              </button>
+              {seleccionTodosHorarios && <button type="button" onClick={borrarHorariosSeleccionados}
+                disabled={cargando || vaciandoHorarios}
+                title="Vaciar todos los horarios de la semana seleccionada"
+                style={{ width: 'auto', padding: '0 12px', fontSize: 12, fontWeight: 700, background: '#a52828', color: '#fff', borderColor: '#a52828' }}>
+                {vaciandoHorarios ? 'Borrando…' : 'Borrar seleccionados'}
+              </button>}
               <label className="boton-importar-excel" style={{ cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: 6 }}>
                 ↑ Importar Excel
                 <input type="file" accept=".xlsx" onChange={seleccionarExcel} style={{ display: 'none' }} disabled={importando || cargando} />
@@ -1064,7 +1099,7 @@ function App() {
                               : obtenerHorario(trabajador.id, dia.clave);
 
                             return (
-                              <td className="celda" key={dia.clave}>
+                              <td className={`celda ${seleccionTodosHorarios ? 'celda-seleccionada' : ''}`} key={dia.clave}>
                                 <textarea
                                   className={`celda-horario ${claseHorario(valor)}`}
                                   aria-label={`Horario de ${trabajador.nombre} el ${dia.clave}`}
