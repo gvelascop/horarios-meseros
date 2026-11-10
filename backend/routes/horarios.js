@@ -191,4 +191,22 @@ router.post('/', async (req, res) => {
     }
 });
 
+// Vaciar únicamente los turnos de una semana, conservando trabajadores y áreas.
+router.post('/vaciar-semana', async (req, res) => {
+    const { semana_inicio } = req.body || {};
+    if (!fechaValida(semana_inicio)) {
+        return res.status(400).json({ mensaje: 'Semana inválida' });
+    }
+    try {
+        const [resultado] = await db.query(
+            "UPDATE horarios SET horario = 'LIBRE' WHERE semana_inicio = ? AND horario <> 'LIBRE'",
+            [semana_inicio]
+        );
+        res.json({ actualizados: resultado.affectedRows || 0, semana_inicio });
+    } catch (error) {
+        console.error('Error al vaciar horarios:', error);
+        res.status(500).json({ mensaje: 'No se pudieron vaciar los horarios' });
+    }
+});
+
 module.exports = router;
