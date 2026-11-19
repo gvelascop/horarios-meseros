@@ -5,7 +5,7 @@ import { leerPlanillaExcel } from './importarExcel';
 import TablaHorarios from './TablaHorarios';
 import VistaPreviaImportacion from './VistaPreviaImportacion';
 import { descargarExcel } from './exportarExcel';
-import { DIAS, fechaLocal, parsearFecha, obtenerLunes, fechaDeDia, calcularHoras, ordenarPorCargo } from './horariosUtils';
+import { DIAS, fechaLocal, parsearFecha, obtenerLunes, fechaDeDia, calcularHoras, prioridadCargo, ordenarPorCargo } from './horariosUtils';
 
 const API = '/api';
 const CLAVE_NAVEGACION = 'horarios:navegacion:v1';
