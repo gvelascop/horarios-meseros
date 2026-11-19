@@ -3,8 +3,9 @@ import './App.css';
 import { apiJson } from './api';
 import { leerPlanillaExcel } from './importarExcel';
 import TablaHorarios from './TablaHorarios';
+import VistaPreviaImportacion from './VistaPreviaImportacion';
 import { descargarExcel } from './exportarExcel';
-import { DIAS, fechaLocal, parsearFecha, obtenerLunes, fechaDeDia, calcularHoras, anchoColumna, ajustarAlturaCeldaHorario, ordenarPorCargo, claseHorario } from './horariosUtils';
+import { DIAS, fechaLocal, parsearFecha, obtenerLunes, fechaDeDia, calcularHoras, ordenarPorCargo } from './horariosUtils';
 
 const API = '/api';
 const CLAVE_NAVEGACION = 'horarios:navegacion:v1';
@@ -630,22 +631,14 @@ function App() {
             </div>
           </div>
 
-          {errorImportacion && <p role="alert" className="mensaje">{errorImportacion}</p>}
-          {filasImportacion.length > 0 && (
-            <div className="panel" style={{ marginBottom: 16 }}>
-              <h3>Vista previa de importación</h3>
-              <p>Semana seleccionada: {semana}. Se importarán {filasImportacion.length} trabajadores y sus turnos. Los horarios existentes de esta semana para esos trabajadores se actualizarán; las otras semanas se conservarán.</p>
-              <div className="tabla-contenedor" style={{ maxHeight: 260, overflow: 'auto' }}>
-                <table className="tabla-estadisticas"><thead><tr><th>Área</th><th>Mesero</th><th>Cargo</th><th>Turnos</th></tr></thead>
-                  <tbody>{filasImportacion.map((fila, i) => <tr key={i}><td>{fila.area}</td><td>{fila.nombre}</td><td>{fila.cargo}</td><td>{Object.entries(fila.turnos).map(([dia, turno]) => `${dia}: ${turno}`).join(' · ')}</td></tr>)}</tbody>
-                </table>
-              </div>
-              <div style={{ display: 'flex', gap: 12, marginTop: 12 }}>
-                <button type="button" disabled={importando} onClick={confirmarImportacion}>{importando ? 'Importando…' : 'Confirmar y guardar'}</button>
-                <button type="button" disabled={importando} onClick={() => setFilasImportacion([])}>Cancelar</button>
-              </div>
-            </div>
-          )}
+          <VistaPreviaImportacion
+            errorImportacion={errorImportacion}
+            filasImportacion={filasImportacion}
+            semana={semana}
+            importando={importando}
+            confirmarImportacion={confirmarImportacion}
+            cancelarImportacion={() => setFilasImportacion([])}
+          />
           <div className="resumen-planilla">
             <div className="periodo-planilla">
               <span className="icono-periodo" aria-hidden="true">
